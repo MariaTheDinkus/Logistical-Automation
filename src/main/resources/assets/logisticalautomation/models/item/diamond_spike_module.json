@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+		"layer0": "logisticalautomation:items/module",
+		"layer1": "logisticalautomation:items/diamond_spike_module"
+    }
+}

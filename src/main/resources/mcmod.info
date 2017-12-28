@@ -1,0 +1,14 @@
+[
+{
+  "modid": "logisticalautomation",
+  "name": "Logistical Automation",
+  "description": "Challenging logistic-based tech mod. Focuses on small parts combining to make complex machines. Spiritual successor to Simply Conveyors & More.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://zundrel.com",
+  "updateUrl": "",
+  "authorList": ["Zundrel"],
+  "screenshots": [],
+  "dependencies": ["mod_MinecraftForge"]
+}
+]

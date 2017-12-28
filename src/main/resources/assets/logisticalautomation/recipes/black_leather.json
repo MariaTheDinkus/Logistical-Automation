@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "simplyconveyors:black_leather",
+    "count": 8
+  },
+  "pattern": [
+    "LLL",
+    "LBL",
+    "LLL"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "type": "forge:ore_dict",
+      "ore": "dyeBlack"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  }
+}

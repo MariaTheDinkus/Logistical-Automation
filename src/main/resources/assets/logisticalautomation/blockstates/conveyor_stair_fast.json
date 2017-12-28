@@ -1,0 +1,48 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+	"textures": {
+        "0": "logisticalautomation:blocks/conveyor_inside",
+        "1": "logisticalautomation:blocks/conveyor_fast"
+    },
+	"model": "logisticalautomation:conveyor_stair"
+  },
+  "variants": {
+    "normal": [{ 
+		"model": "logisticalautomation:conveyor_stair"
+	}],
+    "inventory": [{}],
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "west": {"y": 270},
+      "east": {"y": 90},
+      "up": {"x": -90},
+      "down": {"x": 90}
+    },
+	"left": {
+		"true": {
+			
+		},
+		"false": {
+			
+		}
+	},
+	"right": {
+		"true": {
+		
+		},
+		"false": {
+			"submodel": "logisticalautomation:conveyor_stair_guard"
+		}
+	},
+	"back": {
+		"true": {
+			"submodel": "logisticalautomation:conveyor_stair_extender"
+		},
+		"false": {
+			
+		}
+	}
+  }
+}

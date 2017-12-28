@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "simplyconveyors:road_full",
+    "data": 5,
+    "count": 8
+  },
+  "pattern": [
+    "DDD",
+    "AAA"
+  ],
+  "type": "forge:ore_shaped",
+  "group": "road_full_alt",
+  "key": {
+    "A": {
+      "item": "simplyconveyors:asphault"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "dyeLime"
+    }
+  }
+}

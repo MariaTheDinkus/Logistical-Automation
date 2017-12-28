@@ -1,0 +1,52 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+	"textures": {
+        "0": "logisticalautomation:blocks/conveyor_inside",
+        "1": "logisticalautomation:blocks/conveyor"
+    },
+	"model": "logisticalautomation:conveyor_vertical"
+  },
+  "variants": {
+    "normal": [{ 
+		"model": "logisticalautomation:conveyor_vertical"
+	}],
+    "inventory": [{}],
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "west": {"y": 270},
+      "east": {"y": 90},
+      "up": {"x": -90},
+      "down": {"x": 90}
+    },
+	"left": {
+		"true": {
+			"submodel": "logisticalautomation:conveyor_vertical_extender"
+		},
+		"false": {
+			
+		}
+	},
+	"right": {
+		"true": {
+		
+		},
+		"false": {
+			"submodel": "logisticalautomation:conveyor_vertical_guard"
+		}
+	},
+	"back": {
+		"true": {
+		
+		},
+		"false": {
+			"submodel": {
+				"conveyor": { "model": "logisticalautomation:conveyor" },
+				"guard1": { "model": "logisticalautomation:guard" },
+				"guard2": { "model": "logisticalautomation:guard", "y": 180 }
+			}
+		}
+	}
+  }
+}

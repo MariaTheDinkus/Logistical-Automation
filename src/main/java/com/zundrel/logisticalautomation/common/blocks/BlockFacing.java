@@ -17,6 +17,8 @@ import com.zundrel.logisticalautomation.api.IWrenchable;
 public class BlockFacing extends BlockBasic implements IWrenchable {
 	public BlockFacing(String unlocalizedName, Material material) {
 		super(unlocalizedName, material);
+
+		setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	@Override

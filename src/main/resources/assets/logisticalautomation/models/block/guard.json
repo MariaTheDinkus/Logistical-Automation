@@ -1,5 +1,4 @@
 {
-    "parent": "block/block",
     "elements": [
         {
             "name": "Guard",

@@ -12,7 +12,7 @@ import com.zundrel.logisticalautomation.api.ConveyorTier;
 import com.zundrel.logisticalautomation.api.ConveyorType;
 import com.zundrel.logisticalautomation.common.blocks.BlockConveyor;
 import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
-import com.zundrel.logisticalautomation.common.info.ConfigHandler;
+import com.zundrel.logisticalautomation.common.handler.ConfigHandler;
 import com.zundrel.logisticalautomation.common.info.ModInfo;
 
 @EventBusSubscriber(modid = ModInfo.MOD_ID)

@@ -9,13 +9,13 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -25,10 +25,11 @@ import com.zundrel.logisticalautomation.api.ConveyorTier;
 import com.zundrel.logisticalautomation.api.ConveyorType;
 import com.zundrel.logisticalautomation.api.IConveyor;
 import com.zundrel.logisticalautomation.api.IWrenchable;
+import com.zundrel.logisticalautomation.common.utilities.InventoryUtils;
 import com.zundrel.logisticalautomation.common.utilities.MovementUtilities;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
 
-public class BlockConveyor extends BlockBasic implements IConveyor, IWrenchable {
+public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable {
 	protected ConveyorTier tier;
 	protected ConveyorType type;
 
@@ -41,10 +42,14 @@ public class BlockConveyor extends BlockBasic implements IConveyor, IWrenchable 
 
 		this.tier = tier;
 		this.type = type;
+
+		this.setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH).withProperty(BACK, false).withProperty(LEFT, false).withProperty(RIGHT, false));
 	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+		EnumFacing facing = state.getValue(FACING);
+
 		if (type == ConveyorType.FLAT && !entityIn.onGround) {
 			return;
 		} else if (entityIn.isSneaking()) {
@@ -87,16 +92,27 @@ public class BlockConveyor extends BlockBasic implements IConveyor, IWrenchable 
 		} else if (type == ConveyorType.STAIRDOWN) {
 			MovementUtilities.pushEntity(entityIn, pos, getSpeed(tier), state.getValue(FACING).getOpposite());
 		}
-	}
 
-	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
+		double distX = Math.abs(pos.offset(facing).getX() + .5 - entityIn.posX);
+		double distZ = Math.abs(pos.offset(facing).getZ() + .5 - entityIn.posZ);
 
-	@Override
-	public boolean isOpaqueCube(IBlockState blockState) {
-		return false;
+		if (!worldIn.isRemote && (type == ConveyorType.FLAT || type == ConveyorType.INVERSE) && entityIn instanceof EntityItem) {
+			EntityItem entity = (EntityItem) entityIn;
+			BlockPos invPos = pos.offset(facing);
+			TileEntity inventoryTile = worldIn.getTileEntity(invPos);
+			boolean contact = facing.getAxis() == Axis.Z ? distZ < .7 : distX < .7;
+			if (contact && inventoryTile != null) {
+				ItemStack stack = entity.getItem();
+				if (!stack.isEmpty()) {
+					ItemStack ret = InventoryUtils.insertStackIntoInventory(inventoryTile, stack, facing.getOpposite());
+					if (ret.isEmpty()) {
+						entity.setDead();
+					} else if (ret.getCount() < stack.getCount()) {
+						entity.setItem(ret);
+					}
+				}
+			}
+		}
 	}
 
 	@Override
@@ -106,93 +122,59 @@ public class BlockConveyor extends BlockBasic implements IConveyor, IWrenchable 
 
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		IBlockState newState = state;
+		EnumFacing facing = state.getValue(FACING);
+
+		boolean back = false;
+		boolean left = false;
+		boolean right = false;
+
 		if (type == ConveyorType.FLAT) {
-			if (worldIn.getBlockState(pos.offset(state.getValue(FACING).getOpposite())).getBlock() != Blocks.AIR) {
-				newState = newState.withProperty(BACK, true);
-			} else if (worldIn.getBlockState(pos.offset(state.getValue(FACING).getOpposite()).down()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING).getOpposite()).down()).getBlock()).getConveyorType() == ConveyorType.STAIRUP) {
-				newState = newState.withProperty(BACK, true);
-			} else {
-				newState = newState.withProperty(BACK, false);
+			if (worldIn.getBlockState(pos.offset(facing.getOpposite())).getBlock() != Blocks.AIR) {
+				back = true;
+			} else if (worldIn.getBlockState(pos.offset(facing.getOpposite()).down()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing.getOpposite()).down()).getBlock()).getConveyorType() == ConveyorType.STAIRUP) {
+				back = true;
 			}
 
-			if (worldIn.getBlockState(pos.down().offset(state.getValue(FACING).getOpposite())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING).getOpposite()).down()).getBlock()).getConveyorType() == ConveyorType.VERTICAL) {
-				newState = newState.withProperty(BACK, true);
+			if (worldIn.getBlockState(pos.down().offset(facing.getOpposite())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing.getOpposite()).down()).getBlock()).getConveyorType() == ConveyorType.VERTICAL) {
+				back = true;
 			}
 
-			if (worldIn.getBlockState(pos.offset(state.getValue(FACING).rotateYCCW())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING).rotateYCCW())).getBlock()).getConveyorType() == ConveyorType.FLAT) {
-				newState = newState.withProperty(LEFT, true);
-			} else {
-				newState = newState.withProperty(LEFT, false);
+			if (worldIn.getBlockState(pos.offset(facing.rotateYCCW())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing.rotateYCCW())).getBlock()).getConveyorType() == ConveyorType.FLAT) {
+				left = true;
 			}
 
-			if (worldIn.getBlockState(pos.offset(state.getValue(FACING).rotateY())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING).rotateY())).getBlock()).getConveyorType() == ConveyorType.FLAT) {
-				newState = newState.withProperty(RIGHT, true);
-			} else {
-				newState = newState.withProperty(RIGHT, false);
+			if (worldIn.getBlockState(pos.offset(facing.rotateY())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing.rotateY())).getBlock()).getConveyorType() == ConveyorType.FLAT) {
+				right = true;
 			}
 		} else if (type == ConveyorType.INVERSE) {
-			if (worldIn.getBlockState(pos.offset(state.getValue(FACING).getOpposite())).getBlock() != Blocks.AIR) {
-				newState = newState.withProperty(BACK, true);
-			} else {
-				newState = newState.withProperty(BACK, false);
+			if (worldIn.getBlockState(pos.offset(facing.getOpposite())).getBlock() != Blocks.AIR) {
+				back = true;
 			}
 
-			if (worldIn.getBlockState(pos.offset(state.getValue(FACING).rotateYCCW())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING).rotateYCCW())).getBlock()).getConveyorType() == ConveyorType.INVERSE) {
-				newState = newState.withProperty(LEFT, true);
-			} else {
-				newState = newState.withProperty(LEFT, false);
+			if (worldIn.getBlockState(pos.offset(facing.rotateYCCW())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing.rotateYCCW())).getBlock()).getConveyorType() == ConveyorType.INVERSE) {
+				left = true;
 			}
 
-			if (worldIn.getBlockState(pos.offset(state.getValue(FACING).rotateY())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING).rotateY())).getBlock()).getConveyorType() == ConveyorType.INVERSE) {
-				newState = newState.withProperty(RIGHT, true);
-			} else {
-				newState = newState.withProperty(RIGHT, false);
+			if (worldIn.getBlockState(pos.offset(facing.rotateY())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing.rotateY())).getBlock()).getConveyorType() == ConveyorType.INVERSE) {
+				right = true;
 			}
 		} else if (type == ConveyorType.VERTICAL) {
-			if (worldIn.getBlockState(pos.offset(state.getValue(FACING).getOpposite())).getBlock() instanceof IConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING).getOpposite())).getBlock()).getConveyorType() == ConveyorType.FLAT && state.getValue(FACING) == worldIn.getBlockState(pos.offset(state.getValue(FACING).getOpposite())).getValue(FACING)) {
-				newState = newState.withProperty(BACK, false);
+			if (worldIn.getBlockState(pos.offset(facing.getOpposite())).getBlock() instanceof IConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing.getOpposite())).getBlock()).getConveyorType() == ConveyorType.FLAT && facing == worldIn.getBlockState(pos.offset(facing.getOpposite())).getValue(FACING)) {
+				back = false;
 			} else {
-				newState = newState.withProperty(BACK, true);
+				back = true;
 			}
 
-			if (worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock()).getConveyorType() == ConveyorType.FLAT) {
-				newState = newState.withProperty(LEFT, true);
-			} else {
-				newState = newState.withProperty(LEFT, false);
+			if (worldIn.getBlockState(pos.offset(facing).up()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing).up()).getBlock()).getConveyorType() == ConveyorType.FLAT) {
+				left = true;
 			}
-
-			newState = newState.withProperty(RIGHT, false);
 		} else if (type == ConveyorType.STAIRUP || type == ConveyorType.STAIRDOWN) {
-			if (worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock()).getConveyorType() == ConveyorType.FLAT) {
-				newState = newState.withProperty(BACK, true);
-			} else {
-				newState = newState.withProperty(BACK, false);
+			if (worldIn.getBlockState(pos.offset(facing).up()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing).up()).getBlock()).getConveyorType() == ConveyorType.FLAT) {
+				back = true;
 			}
-
-			newState = newState.withProperty(RIGHT, false);
 		}
 
-		return newState;
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		return state.getValue(FACING).getHorizontalIndex();
-	}
-
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
-	}
-
-	@Override
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-		if (!placer.isSneaking()) {
-			return getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
-		} else {
-			return getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
-		}
+		return super.getActualState(state, worldIn, pos).withProperty(BACK, back).withProperty(LEFT, left).withProperty(RIGHT, right);
 	}
 
 	@Override
@@ -252,10 +234,5 @@ public class BlockConveyor extends BlockBasic implements IConveyor, IWrenchable 
 
 			addCollisionBox(RotationUtilities.getRotatedAABB(new AxisAlignedBB(0, (8F / 16F), (8F / 16F), 1, 0.99F, 1), state.getValue(FACING).getOpposite()), pos, collidingBoxes, entityBox);
 		}
-	}
-
-	@Override
-	public void onWrenched(World world, BlockPos pos, EntityPlayer player) {
-		world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, world.getBlockState(pos).getValue(FACING).rotateY()));
 	}
 }

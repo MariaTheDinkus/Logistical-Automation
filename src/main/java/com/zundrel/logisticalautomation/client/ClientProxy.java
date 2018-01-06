@@ -12,7 +12,7 @@ import com.zundrel.logisticalautomation.common.CommonProxy;
 public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerItemModel(Item i, int meta, String id) {
-		ModelLoader.setCustomModelResourceLocation(i, meta, new ModelResourceLocation(id, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(i, meta, new ModelResourceLocation(i.getRegistryName(), "inventory"));
 	}
 
 	@Override

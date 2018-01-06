@@ -13,7 +13,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.zundrel.logisticalautomation.common.CommonProxy;
-import com.zundrel.logisticalautomation.common.info.ConfigHandler;
 import com.zundrel.logisticalautomation.common.info.ModInfo;
 import com.zundrel.logisticalautomation.common.registry.BlockRegistry;
 
@@ -37,8 +36,7 @@ public class LogisticalAutomation {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		configFile = event.getSuggestedConfigurationFile();
-		ConfigHandler.init(configFile);
+
 	}
 
 	@Mod.EventHandler

@@ -4,6 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockRenderLayer;
@@ -17,6 +18,12 @@ import com.zundrel.logisticalautomation.api.IWrenchable;
 public class BlockFacing extends BlockBasic implements IWrenchable {
 	public BlockFacing(String unlocalizedName, Material material) {
 		super(unlocalizedName, material);
+
+		setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH));
+	}
+
+	public BlockFacing(String unlocalizedName, Material material, CreativeTabs tab) {
+		super(unlocalizedName, material, tab);
 
 		setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH));
 	}

@@ -22,7 +22,7 @@
     },
 	"left": {
 		"true": {
-			"submodel": "logisticalautomation:conveyor_vertical_extender"
+			
 		},
 		"false": {
 			
@@ -33,19 +33,30 @@
 		
 		},
 		"false": {
-			"submodel": "logisticalautomation:conveyor_vertical_guard"
+			
 		}
 	},
 	"back": {
 		"true": {
-		
-		},
-		"false": {
 			"submodel": {
 				"conveyor": { "model": "logisticalautomation:conveyor" },
 				"guard1": { "model": "logisticalautomation:guard" },
 				"guard2": { "model": "logisticalautomation:guard", "y": 180 }
 			}
+		},
+		"false": {
+			
+		}
+	},
+	"addon": {
+		"true": {
+			"submodel": {
+				"verticalguard": { "model": "logisticalautomation:conveyor_vertical_guard" },
+				"extender": { "model": "logisticalautomation:conveyor_vertical_extender" }
+			}
+		},
+		"false": {
+			"submodel": "logisticalautomation:conveyor_vertical_guard"
 		}
 	}
   }

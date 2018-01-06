@@ -23,6 +23,6 @@
         }
     },
     "textures": {
-        "layer0": "logisticalautomation:items/conveyor_wrench"
+        "layer0": "logisticalautomation:items/logistic_wrench"
     }
 }

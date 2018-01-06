@@ -20,11 +20,13 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.items.CapabilityItemHandler;
 
 import com.zundrel.logisticalautomation.api.ConveyorTier;
 import com.zundrel.logisticalautomation.api.ConveyorType;
 import com.zundrel.logisticalautomation.api.IConveyor;
 import com.zundrel.logisticalautomation.api.IWrenchable;
+import com.zundrel.logisticalautomation.client.LogisticCreativeTabs.LogisticConveyorTab;
 import com.zundrel.logisticalautomation.common.utilities.InventoryUtils;
 import com.zundrel.logisticalautomation.common.utilities.MovementUtilities;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
@@ -36,14 +38,15 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 	public static final PropertyBool BACK = PropertyBool.create("back");
 	public static final PropertyBool LEFT = PropertyBool.create("left");
 	public static final PropertyBool RIGHT = PropertyBool.create("right");
+	public static final PropertyBool ADDON = PropertyBool.create("addon");
 
 	public BlockConveyor(String unlocalizedName, Material material, ConveyorTier tier, ConveyorType type) {
-		super(unlocalizedName, material);
+		super(unlocalizedName, material, LogisticConveyorTab.INSTANCE);
 
 		this.tier = tier;
 		this.type = type;
 
-		this.setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH).withProperty(BACK, false).withProperty(LEFT, false).withProperty(RIGHT, false));
+		this.setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH).withProperty(BACK, false).withProperty(LEFT, false).withProperty(RIGHT, false).withProperty(ADDON, false));
 	}
 
 	@Override
@@ -69,9 +72,18 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 		}
 
 		if (type == ConveyorType.VERTICAL) {
-			if (tier == ConveyorTier.NORMAL && worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock()).getConveyorType() == ConveyorType.FLAT) {
+			double distX = Math.abs(pos.offset(facing).getX() + .5 - entityIn.posX);
+			double distZ = Math.abs(pos.offset(facing).getZ() + .5 - entityIn.posZ);
+
+			boolean contact = facing.getAxis() == Axis.Z ? distZ < 0.9 : distX < 0.9;
+
+			if (entityIn instanceof EntityItem) {
+				contact = true;
+			}
+
+			if (contact && tier == ConveyorTier.NORMAL && worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock()).getConveyorType() == ConveyorType.FLAT) {
 				MovementUtilities.pushEntityUp(entityIn, pos, getSpeed(tier) + 0.13, state.getValue(FACING), true);
-			} else {
+			} else if (contact) {
 				MovementUtilities.pushEntityUp(entityIn, pos, getSpeed(tier), state.getValue(FACING), true);
 			}
 		} else if (type == ConveyorType.INVERSE) {
@@ -117,7 +129,7 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING, BACK, LEFT, RIGHT });
+		return new BlockStateContainer(this, new IProperty[] { FACING, BACK, LEFT, RIGHT, ADDON });
 	}
 
 	@Override
@@ -127,6 +139,7 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 		boolean back = false;
 		boolean left = false;
 		boolean right = false;
+		boolean addon = false;
 
 		if (type == ConveyorType.FLAT) {
 			if (worldIn.getBlockState(pos.offset(facing.getOpposite())).getBlock() != Blocks.AIR) {
@@ -146,6 +159,15 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 			if (worldIn.getBlockState(pos.offset(facing.rotateY())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing.rotateY())).getBlock()).getConveyorType() == ConveyorType.FLAT) {
 				right = true;
 			}
+
+			BlockPos invPos = pos.offset(facing);
+			TileEntity inventoryTile = worldIn.getTileEntity(invPos);
+
+			if (inventoryTile != null && inventoryTile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing.getOpposite())) {
+				left = false;
+				right = false;
+				addon = true;
+			}
 		} else if (type == ConveyorType.INVERSE) {
 			if (worldIn.getBlockState(pos.offset(facing.getOpposite())).getBlock() != Blocks.AIR) {
 				back = true;
@@ -158,15 +180,22 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 			if (worldIn.getBlockState(pos.offset(facing.rotateY())).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing.rotateY())).getBlock()).getConveyorType() == ConveyorType.INVERSE) {
 				right = true;
 			}
+
+			BlockPos invPos = pos.offset(facing);
+			TileEntity inventoryTile = worldIn.getTileEntity(invPos);
+
+			if (inventoryTile != null && inventoryTile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing.getOpposite())) {
+				left = false;
+				right = false;
+				addon = true;
+			}
 		} else if (type == ConveyorType.VERTICAL) {
 			if (worldIn.getBlockState(pos.offset(facing.getOpposite())).getBlock() instanceof IConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing.getOpposite())).getBlock()).getConveyorType() == ConveyorType.FLAT && facing == worldIn.getBlockState(pos.offset(facing.getOpposite())).getValue(FACING)) {
-				back = false;
-			} else {
 				back = true;
 			}
 
 			if (worldIn.getBlockState(pos.offset(facing).up()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing).up()).getBlock()).getConveyorType() == ConveyorType.FLAT) {
-				left = true;
+				addon = true;
 			}
 		} else if (type == ConveyorType.STAIRUP || type == ConveyorType.STAIRDOWN) {
 			if (worldIn.getBlockState(pos.offset(facing).up()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(facing).up()).getBlock()).getConveyorType() == ConveyorType.FLAT) {
@@ -174,7 +203,7 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 			}
 		}
 
-		return super.getActualState(state, worldIn, pos).withProperty(BACK, back).withProperty(LEFT, left).withProperty(RIGHT, right);
+		return super.getActualState(state, worldIn, pos).withProperty(BACK, back).withProperty(LEFT, left).withProperty(RIGHT, right).withProperty(ADDON, addon);
 	}
 
 	@Override

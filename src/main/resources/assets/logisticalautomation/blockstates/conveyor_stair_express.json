@@ -33,7 +33,7 @@
 		
 		},
 		"false": {
-			"submodel": "logisticalautomation:conveyor_stair_guard"
+			
 		}
 	},
 	"back": {
@@ -42,6 +42,14 @@
 		},
 		"false": {
 			
+		}
+	},
+	"addon": {
+		"true": {
+		
+		},
+		"false": {
+			"submodel": "logisticalautomation:conveyor_stair_guard"
 		}
 	}
   }

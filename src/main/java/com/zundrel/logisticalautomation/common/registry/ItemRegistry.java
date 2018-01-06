@@ -19,13 +19,13 @@ public class ItemRegistry {
 	public static IForgeRegistry<Item> registry;
 	public static ArrayList<ItemBlock> itemBlocks = new ArrayList<ItemBlock>();
 
-	public static Item conveyor_wrench;
+	public static Item logistic_wrench;
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		registry = event.getRegistry();
 
-		register(conveyor_wrench = new ItemWrench("conveyor_wrench"));
+		register(logistic_wrench = new ItemWrench("logistic_wrench"));
 
 		itemBlocks.forEach((ib) -> {
 			registry.register(ib);

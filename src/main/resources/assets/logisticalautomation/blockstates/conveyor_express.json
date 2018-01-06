@@ -46,6 +46,14 @@
 		"false": {
 			"submodel": "logisticalautomation:guard", "y": -90
 		}
+	},
+	"addon": { 
+		"true": {
+			"submodel": "logisticalautomation:conveyor_inserter"
+		},
+		"false": { 
+		
+		}
 	}
   }
 }

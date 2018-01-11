@@ -43,6 +43,37 @@ public class BlockSplitter extends BlockFacing implements IWrenchable, IShowHopp
 	}
 
 	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		boolean right = false;
+		if (String.valueOf(meta).length() == 2) {
+			right = true;
+		} else {
+			right = false;
+		}
+
+		int metaNew = 0;
+		if (String.valueOf(meta).length() == 1) {
+			metaNew = Integer.parseInt(String.valueOf(("" + meta).charAt(0)));
+		} else {
+			metaNew = Integer.parseInt(String.valueOf(("" + meta).charAt(1)));
+		}
+
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(metaNew)).withProperty(RIGHT, right);
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		int right = 0;
+		if (state.getValue(RIGHT) == false) {
+			right = 0;
+		} else {
+			right = 1;
+		}
+
+		return Integer.parseInt(right + "" + state.getValue(FACING).getIndex());
+	}
+
+	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return RotationUtilities.getRotatedAABB(new AxisAlignedBB(0, 0, 0.01F, 1, 1, 1), blockState.getValue(FACING).getOpposite());
 	}

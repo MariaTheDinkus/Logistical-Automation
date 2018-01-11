@@ -5,11 +5,9 @@ import java.util.List;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 
-import com.zundrel.logisticalautomation.LogisticalAutomation;
 import com.zundrel.logisticalautomation.client.LogisticCreativeTabs.LogisticGeneralTab;
 
 public class BlockBasic extends BlockHorizontal {
@@ -29,10 +27,6 @@ public class BlockBasic extends BlockHorizontal {
 		setUnlocalizedName(this.getRegistryName().toString());
 
 		setCreativeTab(tab);
-	}
-
-	public void registerModel(ItemBlock ib) {
-		LogisticalAutomation.proxy.registerItemModel(ib, 0, this.getUnlocalizedName().substring(5));
 	}
 
 	public void addCollisionBox(AxisAlignedBB box, BlockPos pos, List collidingBoxes, AxisAlignedBB entityBox) {

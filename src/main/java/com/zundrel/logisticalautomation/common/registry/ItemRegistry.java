@@ -9,9 +9,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import com.zundrel.logisticalautomation.common.blocks.BlockBasic;
 import com.zundrel.logisticalautomation.common.info.ModInfo;
-import com.zundrel.logisticalautomation.common.items.ItemBasic;
 import com.zundrel.logisticalautomation.common.items.ItemWrench;
 
 @EventBusSubscriber(modid = ModInfo.MOD_ID)
@@ -29,17 +27,15 @@ public class ItemRegistry {
 
 		itemBlocks.forEach((ib) -> {
 			registry.register(ib);
-			if (ib.getBlock() instanceof BlockBasic) {
-				((BlockBasic) ib.getBlock()).registerModel(ib);
-			}
 		});
 	}
 
 	public static <T extends Item> T register(T i) {
 		registry.register(i);
-		if (i instanceof ItemBasic) {
-			((ItemBasic) i).registerModel(i);
-		}
+		/*
+		 * if (i instanceof ItemBasic) { ((ItemBasic) i).registerModel(i); }
+		 */
+		ModelRegistry.modelList.add(i);
 		return i;
 	}
 }

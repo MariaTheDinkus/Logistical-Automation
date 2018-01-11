@@ -74,6 +74,7 @@ public class BlockRegistry {
 		registry.register(b);
 		ib.setRegistryName(b.getRegistryName());
 		ItemRegistry.itemBlocks.add(ib);
+		ModelRegistry.modelList.add(ib);
 		return b;
 	}
 

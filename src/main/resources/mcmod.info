@@ -8,6 +8,7 @@
   "url": "https://zundrel.com",
   "updateUrl": "",
   "authorList": ["Zundrel"],
+  "credits": "MrRiegel and TechmageDE for their Filter utility from Industrial Conveyor Belts and examples from their filtering code.",
   "screenshots": [],
   "dependencies": ["mod_MinecraftForge"]
 }

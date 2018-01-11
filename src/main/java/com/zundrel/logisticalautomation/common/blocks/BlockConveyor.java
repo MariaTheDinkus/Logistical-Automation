@@ -3,6 +3,7 @@ package com.zundrel.logisticalautomation.common.blocks;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -25,8 +26,10 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import com.zundrel.logisticalautomation.api.ConveyorTier;
 import com.zundrel.logisticalautomation.api.ConveyorType;
 import com.zundrel.logisticalautomation.api.IConveyor;
+import com.zundrel.logisticalautomation.api.IShowHopper;
 import com.zundrel.logisticalautomation.api.IWrenchable;
 import com.zundrel.logisticalautomation.client.LogisticCreativeTabs.LogisticConveyorTab;
+import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityFilter;
 import com.zundrel.logisticalautomation.common.utilities.InventoryUtils;
 import com.zundrel.logisticalautomation.common.utilities.MovementUtilities;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
@@ -47,6 +50,16 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 		this.type = type;
 
 		this.setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH).withProperty(BACK, false).withProperty(LEFT, false).withProperty(RIGHT, false).withProperty(ADDON, false));
+	}
+
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean isOpaqueCube(IBlockState blockState) {
+		return false;
 	}
 
 	@Override
@@ -81,7 +94,7 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 				contact = true;
 			}
 
-			if (contact && tier == ConveyorTier.NORMAL && worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock()).getConveyorType() == ConveyorType.FLAT) {
+			if (contact && (tier == ConveyorTier.NORMAL || tier == ConveyorTier.FAST) && worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock() instanceof BlockConveyor && ((IConveyor) worldIn.getBlockState(pos.offset(state.getValue(FACING)).up()).getBlock()).getConveyorType() == ConveyorType.FLAT) {
 				MovementUtilities.pushEntityUp(entityIn, pos, getSpeed(tier) + 0.13, state.getValue(FACING), true);
 			} else if (contact) {
 				MovementUtilities.pushEntityUp(entityIn, pos, getSpeed(tier), state.getValue(FACING), true);
@@ -161,11 +174,13 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 			}
 
 			BlockPos invPos = pos.offset(facing);
+			IBlockState invState = worldIn.getBlockState(invPos);
+			Block invBlock = invState.getBlock();
 			TileEntity inventoryTile = worldIn.getTileEntity(invPos);
 
 			if (inventoryTile != null && inventoryTile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing.getOpposite())) {
-				left = false;
-				right = false;
+				addon = true;
+			} else if (invBlock instanceof IShowHopper && ((IShowHopper) invBlock).showConveyorHopper() && ((IShowHopper) invBlock).compareFacing() && invState.getValue(BlockHorizontal.FACING) == facing || invBlock instanceof IShowHopper && ((IShowHopper) invBlock).showConveyorHopper() && !((IShowHopper) invBlock).compareFacing()) {
 				addon = true;
 			}
 		} else if (type == ConveyorType.INVERSE) {
@@ -184,7 +199,7 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 			BlockPos invPos = pos.offset(facing);
 			TileEntity inventoryTile = worldIn.getTileEntity(invPos);
 
-			if (inventoryTile != null && inventoryTile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing.getOpposite())) {
+			if (inventoryTile != null && (inventoryTile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing.getOpposite()) || inventoryTile instanceof TileEntityFilter)) {
 				left = false;
 				right = false;
 				addon = true;

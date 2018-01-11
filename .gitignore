@@ -20,7 +20,3 @@ build
 # other
 eclipse
 run
-
-#temporaryfixforsubmodelissue
-BlockStateLoader.java
-MultiModel.java

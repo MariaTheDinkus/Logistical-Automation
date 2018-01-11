@@ -81,6 +81,9 @@ public class LogisticCreativeTabs {
 			this.addBlock(BlockRegistry.conveyor_vertical_normal);
 			this.addBlock(BlockRegistry.conveyor_vertical_fast);
 			this.addBlock(BlockRegistry.conveyor_vertical_express);
+
+			this.addBlock(BlockRegistry.filter);
+			this.addBlock(BlockRegistry.splitter);
 		}
 
 		private void addItem(Item item) {

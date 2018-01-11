@@ -25,6 +25,8 @@ tile.logisticalautomation:conveyor_vertical_normal.name=Normal Vertical Conveyor
 tile.logisticalautomation:conveyor_vertical_fast.name=Fast Vertical Conveyor
 tile.logisticalautomation:conveyor_vertical_express.name=Express Vertical Conveyor
 
+tile.logisticalautomation:filter.name=Filter
+
 #Items
 
 item.logisticalautomation:logistic_wrench.name=Logistic Wrench

@@ -1,5 +1,10 @@
 package com.zundrel.logisticalautomation.common.registry;
 
+import com.zundrel.logisticalautomation.api.ConveyorTier;
+import com.zundrel.logisticalautomation.api.ConveyorType;
+import com.zundrel.logisticalautomation.common.blocks.*;
+import com.zundrel.logisticalautomation.common.handler.ConfigHandler;
+import com.zundrel.logisticalautomation.common.info.ModInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
@@ -7,15 +12,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
-
-import com.zundrel.logisticalautomation.api.ConveyorTier;
-import com.zundrel.logisticalautomation.api.ConveyorType;
-import com.zundrel.logisticalautomation.common.blocks.BlockConveyor;
-import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
-import com.zundrel.logisticalautomation.common.blocks.BlockFilter;
-import com.zundrel.logisticalautomation.common.blocks.BlockSplitter;
-import com.zundrel.logisticalautomation.common.handler.ConfigHandler;
-import com.zundrel.logisticalautomation.common.info.ModInfo;
 
 @EventBusSubscriber(modid = ModInfo.MOD_ID)
 public class BlockRegistry {
@@ -36,6 +32,8 @@ public class BlockRegistry {
 	public static Block filter;
 
 	public static Block splitter;
+
+    public static Block junction;
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -68,7 +66,9 @@ public class BlockRegistry {
 		register(filter = new BlockFilter("filter", Material.ROCK));
 
 		register(splitter = new BlockSplitter("splitter", Material.ROCK));
-	}
+
+        register(junction = new BlockJunction("junction", Material.ROCK));
+    }
 
 	public static <T extends Block> T register(T b, ItemBlock ib) {
 		registry.register(b);

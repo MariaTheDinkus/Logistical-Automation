@@ -5,9 +5,9 @@
         "block": "logisticalautomation:blocks/metal_side",
 		"north": "logisticalautomation:blocks/empty",
 		"east": "logisticalautomation:blocks/machine_output_east",
-		"south": "logisticalautomation:blocks/machine_splitter_left",
+      "south": "logisticalautomation:blocks/machine_splitter_front",
 		"west": "logisticalautomation:blocks/machine_output_west",
-		"up": "logisticalautomation:blocks/empty",
+      "up": "logisticalautomation:blocks/machine_splitter_left",
 		"down": "logisticalautomation:blocks/empty"
     },
 	"model": "logisticalautomation:block_overlay"
@@ -26,7 +26,7 @@
 	"right": {
 		"true": {
 			"textures": {
-				"south": "logisticalautomation:blocks/machine_splitter_right"
+              "up": "logisticalautomation:blocks/machine_splitter_right"
 			}
 		},
 		"false": {

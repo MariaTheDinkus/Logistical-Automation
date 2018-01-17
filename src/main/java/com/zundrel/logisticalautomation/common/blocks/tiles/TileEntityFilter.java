@@ -1,5 +1,7 @@
 package com.zundrel.logisticalautomation.common.blocks.tiles;
 
+import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
+import com.zundrel.logisticalautomation.common.utilities.Filter;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,9 +17,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
-import com.zundrel.logisticalautomation.common.utilities.Filter;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityFilter extends TileEntity implements ITickable {
 	private NonNullList<ItemStack> northFilterInventory;
@@ -68,6 +69,10 @@ public class TileEntityFilter extends TileEntity implements ITickable {
 	}
 
 	public void sortItemStack(ItemStack stack) {
+		if (stack.isEmpty()) {
+			return;
+		}
+
 		EnumFacing facingSorted = getSideForItem(stack);
 
 		Vec3d posSpawn = new Vec3d(pos.offset(facingSorted).getX() + 0.5D - facingSorted.getFrontOffsetX() * .35, pos.offset(facingSorted).getY() + 0.4D, pos.offset(facingSorted).getZ() + 0.5D - facingSorted.getFrontOffsetZ() * .35);
@@ -151,6 +156,7 @@ public class TileEntityFilter extends TileEntity implements ITickable {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
 		NBTTagCompound updateTagDescribingTileEntityState = pkt.getNbtCompound();
 		handleUpdateTag(updateTagDescribingTileEntityState);

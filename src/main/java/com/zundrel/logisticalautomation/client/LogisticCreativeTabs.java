@@ -1,15 +1,14 @@
 package com.zundrel.logisticalautomation.client;
 
+import com.zundrel.logisticalautomation.common.handler.ConfigHandler;
+import com.zundrel.logisticalautomation.common.info.ModInfo;
+import com.zundrel.logisticalautomation.common.registry.BlockRegistry;
+import com.zundrel.logisticalautomation.common.registry.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-
-import com.zundrel.logisticalautomation.common.handler.ConfigHandler;
-import com.zundrel.logisticalautomation.common.info.ModInfo;
-import com.zundrel.logisticalautomation.common.registry.BlockRegistry;
-import com.zundrel.logisticalautomation.common.registry.ItemRegistry;
 
 public class LogisticCreativeTabs {
 
@@ -84,7 +83,8 @@ public class LogisticCreativeTabs {
 
 			this.addBlock(BlockRegistry.filter);
 			this.addBlock(BlockRegistry.splitter);
-		}
+            this.addBlock(BlockRegistry.junction);
+        }
 
 		private void addItem(Item item) {
 			item.getSubItems(this, list);

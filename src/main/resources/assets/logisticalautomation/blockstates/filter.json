@@ -1,27 +1,43 @@
 {
   "forge_marker": 1,
   "defaults": {
-	"textures": {
-        "block": "logisticalautomation:blocks/metal_side",
-		"north": "logisticalautomation:blocks/machine_output_north",
-		"east": "logisticalautomation:blocks/machine_output_east",
-		"south": "logisticalautomation:blocks/machine_filter",
-		"west": "logisticalautomation:blocks/machine_output_west",
-		"up": "logisticalautomation:blocks/machine_output_up",
-		"down": "logisticalautomation:blocks/empty"
+    "textures": {
+      "block": "logisticalautomation:blocks/metal_side",
+      "north": "logisticalautomation:blocks/machine_output_north",
+      "east": "logisticalautomation:blocks/machine_output_east",
+      "south": "logisticalautomation:blocks/machine_filter",
+      "west": "logisticalautomation:blocks/machine_output_west",
+      "up": "logisticalautomation:blocks/machine_output_up",
+      "down": "logisticalautomation:blocks/empty"
     },
-	"model": "logisticalautomation:block_overlay"
+    "model": "logisticalautomation:block_overlay"
   },
   "variants": {
-    "normal": [{ "model": "logisticalautomation:block_overlay" }],
-    "inventory": [{}],
+    "normal": [
+      {
+        "model": "logisticalautomation:block_overlay"
+      }
+    ],
+    "inventory": [
+      {}
+    ],
     "facing": {
       "north": {},
-      "south": {"y": 180},
-      "west": {"y": 270},
-      "east": {"y": 90},
-      "up": {"x": -90},
-      "down": {"x": 90}
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      },
+      "east": {
+        "y": 90
+      },
+      "up": {
+        "x": -90
+      },
+      "down": {
+        "x": 90
+      }
     }
   }
 }

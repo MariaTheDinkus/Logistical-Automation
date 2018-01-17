@@ -1,37 +1,52 @@
 {
   "forge_marker": 1,
   "defaults": {
-	"textures": {
-        "block": "logisticalautomation:blocks/metal_side",
-		"north": "logisticalautomation:blocks/empty",
-		"east": "logisticalautomation:blocks/machine_output_east",
+    "textures": {
+      "block": "logisticalautomation:blocks/metal_side",
+      "north": "logisticalautomation:blocks/empty",
+      "east": "logisticalautomation:blocks/machine_output_east",
       "south": "logisticalautomation:blocks/machine_splitter_front",
-		"west": "logisticalautomation:blocks/machine_output_west",
+      "west": "logisticalautomation:blocks/machine_output_west",
       "up": "logisticalautomation:blocks/machine_splitter_left",
-		"down": "logisticalautomation:blocks/empty"
+      "down": "logisticalautomation:blocks/empty"
     },
-	"model": "logisticalautomation:block_overlay"
+    "model": "logisticalautomation:block_overlay"
   },
   "variants": {
-    "normal": [{ "model": "logisticalautomation:block_overlay" }],
-    "inventory": [{}],
+    "normal": [
+      {
+        "model": "logisticalautomation:block_overlay"
+      }
+    ],
+    "inventory": [
+      {}
+    ],
     "facing": {
       "north": {},
-      "south": {"y": 180},
-      "west": {"y": 270},
-      "east": {"y": 90},
-      "up": {"x": -90},
-      "down": {"x": 90}
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      },
+      "east": {
+        "y": 90
+      },
+      "up": {
+        "x": -90
+      },
+      "down": {
+        "x": 90
+      }
     },
-	"right": {
-		"true": {
-			"textures": {
-              "up": "logisticalautomation:blocks/machine_splitter_right"
-			}
-		},
-		"false": {
-			
-		}
-	}
+    "right": {
+      "true": {
+        "textures": {
+          "up": "logisticalautomation:blocks/machine_splitter_right"
+        }
+      },
+      "false": {
+      }
+    }
   }
 }

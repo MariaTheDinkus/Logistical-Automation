@@ -10,14 +10,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageButton implements IMessage, IMessageHandler<MessageButton, IMessage> {
-	NBTTagCompound nbt;
+    NBTTagCompound nbt;
 
-	public MessageButton() {
-	}
+    public MessageButton() {
+    }
 
-	public MessageButton(NBTTagCompound nbt) {
-		this.nbt = nbt;
-	}
+    public MessageButton(NBTTagCompound nbt) {
+        this.nbt = nbt;
+    }
 
     @Override
     public void fromBytes(ByteBuf buf) {
@@ -29,15 +29,15 @@ public class MessageButton implements IMessage, IMessageHandler<MessageButton, I
         ByteBufUtils.writeTag(buf, nbt);
     }
 
-	@Override
-	public IMessage onMessage(MessageButton message, MessageContext ctx) {
-		ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
-			EntityPlayer player = ctx.getServerHandler().player;
-			if (player.openContainer instanceof ContainerFilter) {
-				((ContainerFilter) player.openContainer).tile.handleMessage(player, message.nbt);
-			}
-		});
-		return null;
-	}
+    @Override
+    public IMessage onMessage(MessageButton message, MessageContext ctx) {
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            EntityPlayer player = ctx.getServerHandler().player;
+            if (player.openContainer instanceof ContainerFilter) {
+                ((ContainerFilter) player.openContainer).tile.handleMessage(message.nbt);
+            }
+        });
+        return null;
+    }
 
 }

@@ -1,9 +1,7 @@
 package com.zundrel.logisticalautomation.api;
 
 public interface IConveyor {
-	public ConveyorTier getConveyorTier();
+    ConveyorType getConveyorType();
 
-	public ConveyorType getConveyorType();
-
-	public float getSpeed(ConveyorTier tier);
+    float getSpeed(ConveyorTier tier);
 }

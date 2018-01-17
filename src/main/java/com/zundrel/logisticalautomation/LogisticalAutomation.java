@@ -20,43 +20,37 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
-import java.io.File;
-
 @Mod(name = ModInfo.MOD_NAME, modid = ModInfo.MOD_ID, version = ModInfo.MOD_VERSION)
 public class LogisticalAutomation {
-	@Mod.Instance(ModInfo.MOD_ID)
-	public static LogisticalAutomation instance;
-
-	@SidedProxy(clientSide = ModInfo.MOD_CLIENT_PROXY, serverSide = ModInfo.MOD_SERVER_PROXY)
-	public static CommonProxy proxy;
-
     @CapabilityInject(CapabilityTesting.class)
     public static final Capability<CapabilityTesting> TEST_DATA = null;
+    @Mod.Instance(ModInfo.MOD_ID)
+    public static LogisticalAutomation instance;
+    @SidedProxy(clientSide = ModInfo.MOD_CLIENT_PROXY, serverSide = ModInfo.MOD_SERVER_PROXY)
+    public static CommonProxy proxy;
 
-	public static File configFile;
+    public static SimpleNetworkWrapper networkWrapper;
 
-	public static SimpleNetworkWrapper networkWrapper;
-
-	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
         CapabilityTesting.register();
     }
 
-	@Mod.EventHandler
-	public void init(FMLInitializationEvent event) {
-		TileRegistry.init();
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event) {
+        TileRegistry.init();
 
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
-		networkWrapper = new SimpleNetworkWrapper(ModInfo.MOD_ID);
-		networkWrapper.registerMessage(MessageButton.class, MessageButton.class, 0, Side.SERVER);
+        networkWrapper = new SimpleNetworkWrapper(ModInfo.MOD_ID);
+        networkWrapper.registerMessage(MessageButton.class, MessageButton.class, 0, Side.SERVER);
         networkWrapper.registerMessage(MessageItem.class, MessageItem.class, 1, Side.CLIENT);
         networkWrapper.registerMessage(MessageItems.class, MessageItems.class, 2, Side.CLIENT);
         networkWrapper.registerMessage(MessageRemoveItem.class, MessageRemoveItem.class, 3, Side.CLIENT);
     }
 
-	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
 
-	}
+    }
 }

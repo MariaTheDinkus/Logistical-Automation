@@ -5,5 +5,5 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public interface IWrenchable {
-	public void onWrenched(World world, BlockPos pos, EntityPlayer player);
+    void onWrenched(World world, BlockPos pos, EntityPlayer player);
 }

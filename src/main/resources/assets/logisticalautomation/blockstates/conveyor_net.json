@@ -1,23 +1,39 @@
 {
   "forge_marker": 1,
   "defaults": {
-	"textures": {
-        "0": "logisticalautomation:blocks/conveyor_inside",
-        "1": "logisticalautomation:blocks/conveyor_metal",
-		"2": "logisticalautomation:blocks/conveyor_web"
+    "textures": {
+      "0": "logisticalautomation:blocks/conveyor_inside",
+      "1": "logisticalautomation:blocks/conveyor_metal",
+      "2": "logisticalautomation:blocks/conveyor_web"
     },
-	"model": "logisticalautomation:conveyor_net"
+    "model": "logisticalautomation:conveyor_net"
   },
   "variants": {
-    "normal": [{ "model": "logisticalautomation:conveyor_net" }],
-    "inventory": [{}],
+    "normal": [
+      {
+        "model": "logisticalautomation:conveyor_net"
+      }
+    ],
+    "inventory": [
+      {}
+    ],
     "facing": {
       "north": {},
-      "south": {"y": 180},
-      "west": {"y": 270},
-      "east": {"y": 90},
-      "up": {"x": -90},
-      "down": {"x": 90}
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      },
+      "east": {
+        "y": 90
+      },
+      "up": {
+        "x": -90
+      },
+      "down": {
+        "x": 90
+      }
     }
   }
 }

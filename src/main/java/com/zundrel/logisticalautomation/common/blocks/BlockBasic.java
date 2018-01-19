@@ -30,7 +30,6 @@ public class BlockBasic extends BlockHorizontal {
 
     public void addCollisionBox(AxisAlignedBB box, BlockPos pos, List collidingBoxes, AxisAlignedBB entityBox) {
         if (box != null && entityBox.intersects(box.offset(pos))) {
-            boolean add = true;
             collidingBoxes.add(box.offset(pos));
         }
     }

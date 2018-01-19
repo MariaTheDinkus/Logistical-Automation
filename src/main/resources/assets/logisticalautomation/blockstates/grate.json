@@ -1,0 +1,25 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "logisticalautomation:grate"
+  },
+  "variants": {
+    "normal": [
+      {
+        "model": "logisticalautomation:grate"
+      }
+    ],
+    "inventory": [
+      {}
+    ],
+    "powered": {
+      "true": {
+        "textures": {
+          "0": "blocks/iron_bars"
+        }
+      },
+      "false": {
+      }
+    }
+  }
+}

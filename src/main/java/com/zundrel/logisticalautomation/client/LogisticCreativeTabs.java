@@ -93,6 +93,8 @@ public class LogisticCreativeTabs {
             this.addBlock(BlockRegistry.filter);
             this.addBlock(BlockRegistry.splitter);
             this.addBlock(BlockRegistry.junction);
+
+            this.addBlock(BlockRegistry.grate);
         }
 
         private void addItem(Item item) {

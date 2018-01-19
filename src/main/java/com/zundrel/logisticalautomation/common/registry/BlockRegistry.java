@@ -35,6 +35,8 @@ public class BlockRegistry {
 
     public static Block junction;
 
+    public static Block grate;
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         registry = event.getRegistry();
@@ -68,6 +70,8 @@ public class BlockRegistry {
         register(splitter = new BlockSplitter("splitter", Material.ROCK));
 
         register(junction = new BlockJunction("junction", Material.ROCK));
+
+        register(grate = new BlockGrate("grate", Material.ROCK));
     }
 
     public static <T extends Block> T register(T b, ItemBlock ib) {

@@ -12,7 +12,7 @@ import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.chunk.Chunk;
 
-import com.zundrel.logisticalautomation.client.LogisticCreativeTabs.LogisticGeneralTab;
+import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
 
 public class BlockBasic extends BlockHorizontal {
 	public BlockBasic(String unlocalizedName, Material material) {
@@ -21,7 +21,7 @@ public class BlockBasic extends BlockHorizontal {
 		setRegistryName(unlocalizedName);
 		setUnlocalizedName(this.getRegistryName().toString());
 
-		setCreativeTab(LogisticGeneralTab.INSTANCE);
+		setCreativeTab(LogisticConveyorTab.INSTANCE);
 	}
 
 	public BlockBasic(String unlocalizedName, Material material, CreativeTabs tab) {

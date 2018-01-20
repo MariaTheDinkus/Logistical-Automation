@@ -14,12 +14,12 @@
     ],
     "powered": {
       "true": {
-        "textures": {
-          "0": "blocks/iron_bars"
-        }
+        
       },
       "false": {
-      
+        "textures": {
+         "0": "logisticalautomation:blocks/closed_iron_bars" 
+        }
       }
     }
   }

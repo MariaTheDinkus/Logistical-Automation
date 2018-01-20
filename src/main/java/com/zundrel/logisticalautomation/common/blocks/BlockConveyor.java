@@ -1,11 +1,12 @@
 package com.zundrel.logisticalautomation.common.blocks;
 
 import com.zundrel.logisticalautomation.api.*;
-import com.zundrel.logisticalautomation.client.LogisticCreativeTabs.LogisticConveyorTab;
 import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityFilter;
+import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
 import com.zundrel.logisticalautomation.common.utilities.InventoryUtils;
 import com.zundrel.logisticalautomation.common.utilities.MovementUtilities;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;

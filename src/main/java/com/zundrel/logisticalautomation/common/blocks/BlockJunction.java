@@ -2,8 +2,9 @@ package com.zundrel.logisticalautomation.common.blocks;
 
 import com.zundrel.logisticalautomation.api.IShowHopper;
 import com.zundrel.logisticalautomation.api.IWrenchable;
-import com.zundrel.logisticalautomation.client.LogisticCreativeTabs.LogisticConveyorTab;
+import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -24,6 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
 import java.util.Random;
 
 public class BlockJunction extends BlockFacing implements IWrenchable, IShowHopper {

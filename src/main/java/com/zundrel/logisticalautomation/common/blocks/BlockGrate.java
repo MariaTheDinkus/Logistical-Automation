@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.zundrel.logisticalautomation.client.LogisticCreativeTabs;
+import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs;
 
 public class BlockGrate extends BlockBasic {
 	private static final PropertyBool POWERED = PropertyBool.create("powered");

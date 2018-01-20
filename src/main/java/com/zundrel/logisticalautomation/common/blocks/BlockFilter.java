@@ -3,9 +3,10 @@ package com.zundrel.logisticalautomation.common.blocks;
 import com.zundrel.logisticalautomation.LogisticalAutomation;
 import com.zundrel.logisticalautomation.api.IShowHopper;
 import com.zundrel.logisticalautomation.api.IWrenchable;
-import com.zundrel.logisticalautomation.client.LogisticCreativeTabs.LogisticConveyorTab;
 import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityFilter;
+import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

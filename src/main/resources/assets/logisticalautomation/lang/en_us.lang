@@ -1,7 +1,7 @@
 #Creative Tabs
 
-itemGroup.logisticalautomation_general=Logistical Automation - General
-itemGroup.logisticalautomation_conveyor=Logistical Automation - Conveyors
+#itemGroup.logisticalautomation_general=Logistical Automation - General
+itemGroup.logisticalautomation_conveyor=Logistical Automation
 
 #Blocks
 
@@ -26,6 +26,10 @@ tile.logisticalautomation:conveyor_vertical_fast.name=Fast Vertical Conveyor
 tile.logisticalautomation:conveyor_vertical_express.name=Express Vertical Conveyor
 
 tile.logisticalautomation:filter.name=Filter
+tile.logisticalautomation:splitter.name=Splitter
+tile.logisticalautomation:junction.name=Junction
+
+tile.logisticalautomation:grate.name=Grate
 
 #Items
 

@@ -1,7 +1,5 @@
 package com.zundrel.logisticalautomation;
 
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -12,19 +10,13 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
 import com.zundrel.logisticalautomation.common.CommonProxy;
-import com.zundrel.logisticalautomation.common.capability.CapabilityTesting;
 import com.zundrel.logisticalautomation.common.handler.GuiHandler;
 import com.zundrel.logisticalautomation.common.info.ModInfo;
 import com.zundrel.logisticalautomation.common.network.MessageButton;
-import com.zundrel.logisticalautomation.common.network.MessageItem;
-import com.zundrel.logisticalautomation.common.network.MessageItems;
-import com.zundrel.logisticalautomation.common.network.MessageRemoveItem;
 import com.zundrel.logisticalautomation.common.registry.TileRegistry;
 
 @Mod(name = ModInfo.MOD_NAME, modid = ModInfo.MOD_ID, version = ModInfo.MOD_VERSION)
 public class LogisticalAutomation {
-	@CapabilityInject(CapabilityTesting.class)
-	public static final Capability<CapabilityTesting> TEST_DATA = null;
 	@Mod.Instance(ModInfo.MOD_ID)
 	public static LogisticalAutomation instance;
 	@SidedProxy(clientSide = ModInfo.MOD_CLIENT_PROXY, serverSide = ModInfo.MOD_SERVER_PROXY)
@@ -34,7 +26,7 @@ public class LogisticalAutomation {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		CapabilityTesting.register();
+
 	}
 
 	@Mod.EventHandler
@@ -45,9 +37,6 @@ public class LogisticalAutomation {
 
 		networkWrapper = new SimpleNetworkWrapper(ModInfo.MOD_ID);
 		networkWrapper.registerMessage(MessageButton.class, MessageButton.class, 0, Side.SERVER);
-		networkWrapper.registerMessage(MessageItem.class, MessageItem.class, 1, Side.CLIENT);
-		networkWrapper.registerMessage(MessageItems.class, MessageItems.class, 2, Side.CLIENT);
-		networkWrapper.registerMessage(MessageRemoveItem.class, MessageRemoveItem.class, 3, Side.CLIENT);
 	}
 
 	@Mod.EventHandler

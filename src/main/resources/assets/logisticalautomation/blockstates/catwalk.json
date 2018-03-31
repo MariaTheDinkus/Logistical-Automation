@@ -1,0 +1,53 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "logisticalautomation:catwalk"
+  },
+  "variants": {
+    "normal": [
+      {
+        "model": "logisticalautomation:catwalk"
+      }
+    ],
+    "inventory": [{
+		"submodel": {
+			"wall1": { "model": "logisticalautomation:catwalk_wall" },
+			"wall2": { "model": "logisticalautomation:catwalk_wall", "y": 90 },
+			"wall3": { "model": "logisticalautomation:catwalk_wall", "y": 180 },
+			"wall4": { "model": "logisticalautomation:catwalk_wall", "y": 270 }
+		}
+	}],
+	"north": {
+		"true": {
+			"submodel": "logisticalautomation:catwalk_inside"
+		},
+		"false": {
+			"submodel": "logisticalautomation:catwalk_wall"
+		}
+	},
+	"east": {
+		"true": {
+			"submodel": "logisticalautomation:catwalk_inside", "y": 90
+		},
+		"false": {
+			"submodel": "logisticalautomation:catwalk_wall", "y": 90
+		}
+	},
+	"south": {
+		"true": {
+			"submodel": "logisticalautomation:catwalk_inside", "y": 180
+		},
+		"false": {
+			"submodel": "logisticalautomation:catwalk_wall", "y": 180
+		}
+	},
+	"west": {
+		"true": {
+			"submodel": "logisticalautomation:catwalk_inside", "y": 270
+		},
+		"false": {
+			"submodel": "logisticalautomation:catwalk_wall", "y": 270
+		}
+	}
+  }
+}

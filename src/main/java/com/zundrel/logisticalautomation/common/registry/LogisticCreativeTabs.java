@@ -8,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-import com.zundrel.logisticalautomation.common.handler.ConfigHandler;
 import com.zundrel.logisticalautomation.common.info.ModInfo;
 
 public class LogisticCreativeTabs {
@@ -67,19 +66,9 @@ public class LogisticCreativeTabs {
 			this.addBlock(BlockRegistry.conveyor_fast);
 			this.addBlock(BlockRegistry.conveyor_express);
 
-			if (ConfigHandler.enableInverseConveyors) {
-				this.addBlock(BlockRegistry.conveyor_inverse_normal);
-				this.addBlock(BlockRegistry.conveyor_inverse_normal);
-				this.addBlock(BlockRegistry.conveyor_inverse_normal);
-			}
-
 			this.addBlock(BlockRegistry.conveyor_stair_normal);
 			this.addBlock(BlockRegistry.conveyor_stair_fast);
 			this.addBlock(BlockRegistry.conveyor_stair_express);
-
-			this.addBlock(BlockRegistry.conveyor_stair_down_normal);
-			this.addBlock(BlockRegistry.conveyor_stair_down_fast);
-			this.addBlock(BlockRegistry.conveyor_stair_down_express);
 
 			this.addBlock(BlockRegistry.conveyor_vertical_normal);
 			this.addBlock(BlockRegistry.conveyor_vertical_fast);
@@ -90,6 +79,10 @@ public class LogisticCreativeTabs {
 			this.addBlock(BlockRegistry.junction);
 
 			this.addBlock(BlockRegistry.grate);
+
+			this.addBlock(BlockRegistry.catwalk);
+
+			this.addBlock(BlockRegistry.catwalk_stairs);
 		}
 
 		private void addItem(Item item) {

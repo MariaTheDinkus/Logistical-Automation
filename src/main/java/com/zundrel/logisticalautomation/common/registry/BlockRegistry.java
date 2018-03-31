@@ -1,10 +1,5 @@
 package com.zundrel.logisticalautomation.common.registry;
 
-import com.zundrel.logisticalautomation.api.ConveyorTier;
-import com.zundrel.logisticalautomation.api.ConveyorType;
-import com.zundrel.logisticalautomation.common.blocks.*;
-import com.zundrel.logisticalautomation.common.handler.ConfigHandler;
-import com.zundrel.logisticalautomation.common.info.ModInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
@@ -13,77 +8,82 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import com.zundrel.logisticalautomation.api.EnumConveyorTier;
+import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
+import com.zundrel.logisticalautomation.common.blocks.decor.BlockCatwalk;
+import com.zundrel.logisticalautomation.common.blocks.decor.BlockCatwalkStairs;
+import com.zundrel.logisticalautomation.common.blocks.machines.BlockFilter;
+import com.zundrel.logisticalautomation.common.blocks.machines.BlockGrate;
+import com.zundrel.logisticalautomation.common.blocks.machines.BlockJunction;
+import com.zundrel.logisticalautomation.common.blocks.machines.BlockSplitter;
+import com.zundrel.logisticalautomation.common.blocks.machines.conveyors.BlockFlatConveyor;
+import com.zundrel.logisticalautomation.common.blocks.machines.conveyors.BlockStairConveyor;
+import com.zundrel.logisticalautomation.common.blocks.machines.conveyors.BlockVerticalConveyor;
+import com.zundrel.logisticalautomation.common.info.ModInfo;
+
 @EventBusSubscriber(modid = ModInfo.MOD_ID)
 public class BlockRegistry {
-    public static IForgeRegistry<Block> registry;
+	public static IForgeRegistry<Block> registry;
 
-    public static Block conveyor_normal, conveyor_fast, conveyor_express;
-    public static Block conveyor_vertical_normal, conveyor_vertical_fast,
-            conveyor_vertical_express;
-    public static Block conveyor_inverse_normal, conveyor_inverse_fast,
-            conveyor_inverse_express;
-    public static Block conveyor_stair_normal, conveyor_stair_fast,
-            conveyor_stair_express;
-    public static Block conveyor_stair_down_normal, conveyor_stair_down_fast,
-            conveyor_stair_down_express;
+	public static Block conveyor_normal, conveyor_fast, conveyor_express;
+	public static Block conveyor_vertical_normal, conveyor_vertical_fast, conveyor_vertical_express;
+	public static Block conveyor_stair_normal, conveyor_stair_fast, conveyor_stair_express;
 
-    public static Block conveyor_net;
+	public static Block conveyor_net;
 
-    public static Block filter;
+	public static Block filter;
 
-    public static Block splitter;
+	public static Block splitter;
 
-    public static Block junction;
+	public static Block junction;
 
-    public static Block grate;
+	public static Block grate;
 
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        registry = event.getRegistry();
+	public static Block catwalk;
 
-        register(conveyor_normal = new BlockConveyor("conveyor_normal", Material.ROCK, ConveyorTier.NORMAL, ConveyorType.FLAT));
-        register(conveyor_fast = new BlockConveyor("conveyor_fast", Material.ROCK, ConveyorTier.FAST, ConveyorType.FLAT));
-        register(conveyor_express = new BlockConveyor("conveyor_express", Material.ROCK, ConveyorTier.EXPRESS, ConveyorType.FLAT));
+	public static Block catwalk_stairs;
 
-        register(conveyor_vertical_normal = new BlockConveyor("conveyor_vertical_normal", Material.ROCK, ConveyorTier.NORMAL, ConveyorType.VERTICAL));
-        register(conveyor_vertical_fast = new BlockConveyor("conveyor_vertical_fast", Material.ROCK, ConveyorTier.FAST, ConveyorType.VERTICAL));
-        register(conveyor_vertical_express = new BlockConveyor("conveyor_vertical_express", Material.ROCK, ConveyorTier.EXPRESS, ConveyorType.VERTICAL));
+	@SubscribeEvent
+	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+		registry = event.getRegistry();
 
-        if (ConfigHandler.enableInverseConveyors) {
-            register(conveyor_inverse_normal = new BlockConveyor("conveyor_inverse_normal", Material.ROCK, ConveyorTier.NORMAL, ConveyorType.INVERSE));
-            register(conveyor_inverse_fast = new BlockConveyor("conveyor_inverse_fast", Material.ROCK, ConveyorTier.FAST, ConveyorType.INVERSE));
-            register(conveyor_inverse_express = new BlockConveyor("conveyor_inverse_express", Material.ROCK, ConveyorTier.EXPRESS, ConveyorType.INVERSE));
-        }
+		register(conveyor_normal = new BlockFlatConveyor("conveyor_normal", Material.ROCK, EnumConveyorTier.NORMAL));
+		register(conveyor_fast = new BlockFlatConveyor("conveyor_fast", Material.ROCK, EnumConveyorTier.FAST));
+		register(conveyor_express = new BlockFlatConveyor("conveyor_express", Material.ROCK, EnumConveyorTier.EXPRESS));
 
-        register(conveyor_stair_normal = new BlockConveyor("conveyor_stair_normal", Material.ROCK, ConveyorTier.NORMAL, ConveyorType.STAIRUP));
-        register(conveyor_stair_fast = new BlockConveyor("conveyor_stair_fast", Material.ROCK, ConveyorTier.FAST, ConveyorType.STAIRUP));
-        register(conveyor_stair_express = new BlockConveyor("conveyor_stair_express", Material.ROCK, ConveyorTier.EXPRESS, ConveyorType.STAIRUP));
+		register(conveyor_vertical_normal = new BlockVerticalConveyor("conveyor_vertical_normal", Material.ROCK, EnumConveyorTier.NORMAL));
+		register(conveyor_vertical_fast = new BlockVerticalConveyor("conveyor_vertical_fast", Material.ROCK, EnumConveyorTier.FAST));
+		register(conveyor_vertical_express = new BlockVerticalConveyor("conveyor_vertical_express", Material.ROCK, EnumConveyorTier.EXPRESS));
 
-        register(conveyor_stair_down_normal = new BlockConveyor("conveyor_stair_down_normal", Material.ROCK, ConveyorTier.NORMAL, ConveyorType.STAIRDOWN));
-        register(conveyor_stair_down_fast = new BlockConveyor("conveyor_stair_down_fast", Material.ROCK, ConveyorTier.FAST, ConveyorType.STAIRDOWN));
-        register(conveyor_stair_down_express = new BlockConveyor("conveyor_stair_down_express", Material.ROCK, ConveyorTier.EXPRESS, ConveyorType.STAIRDOWN));
+		register(conveyor_stair_normal = new BlockStairConveyor("conveyor_stair_normal", Material.ROCK, EnumConveyorTier.NORMAL));
+		register(conveyor_stair_fast = new BlockStairConveyor("conveyor_stair_fast", Material.ROCK, EnumConveyorTier.FAST));
+		register(conveyor_stair_express = new BlockStairConveyor("conveyor_stair_express", Material.ROCK, EnumConveyorTier.EXPRESS));
 
-        register(conveyor_net = new BlockFacing("conveyor_net", Material.ROCK));
+		register(conveyor_net = new BlockFacing("conveyor_net", Material.ROCK));
 
-        register(filter = new BlockFilter("filter", Material.ROCK));
+		register(filter = new BlockFilter("filter", Material.ROCK));
 
-        register(splitter = new BlockSplitter("splitter", Material.ROCK));
+		register(splitter = new BlockSplitter("splitter", Material.ROCK));
 
-        register(junction = new BlockJunction("junction", Material.ROCK));
+		register(junction = new BlockJunction("junction", Material.ROCK));
 
-        register(grate = new BlockGrate("grate", Material.ROCK));
-    }
+		register(grate = new BlockGrate("grate", Material.ROCK));
 
-    public static <T extends Block> T register(T b, ItemBlock ib) {
-        registry.register(b);
-        ib.setRegistryName(b.getRegistryName());
-        ItemRegistry.itemBlocks.add(ib);
-        ModelRegistry.modelList.add(ib);
-        return b;
-    }
+		register(catwalk = new BlockCatwalk("catwalk", Material.ROCK));
 
-    public static <T extends Block> T register(T b) {
-        ItemBlock ib = new ItemBlock(b);
-        return register(b, ib);
-    }
+		register(catwalk_stairs = new BlockCatwalkStairs("catwalk_stairs", Material.ROCK));
+	}
+
+	public static <T extends Block> T register(T b, ItemBlock ib) {
+		registry.register(b);
+		ib.setRegistryName(b.getRegistryName());
+		ItemRegistry.itemBlocks.add(ib);
+		ModelRegistry.modelList.add(ib);
+		return b;
+	}
+
+	public static <T extends Block> T register(T b) {
+		ItemBlock ib = new ItemBlock(b);
+		return register(b, ib);
+	}
 }

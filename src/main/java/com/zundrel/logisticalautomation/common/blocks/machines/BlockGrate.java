@@ -1,4 +1,4 @@
-package com.zundrel.logisticalautomation.common.blocks;
+package com.zundrel.logisticalautomation.common.blocks.machines;
 
 import java.util.List;
 
@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.zundrel.logisticalautomation.common.blocks.BlockBasic;
 import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs;
 
 public class BlockGrate extends BlockBasic {

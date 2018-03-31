@@ -59,6 +59,14 @@
       "false": {
         "submodel": "logisticalautomation:conveyor_stair_guard"
       }
+    },
+    "up": {
+      "true": {
+        
+      },
+      "false":{
+        "model": "logisticalautomation:conveyor_stair_down"
+      }
     }
   }
 }

@@ -2,6 +2,7 @@ package com.zundrel.logisticalautomation.common.blocks.tiles;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.ItemStackHelper;
@@ -61,7 +62,7 @@ public class TileEntityFilter extends TileEntity {
 	}
 
 	private EnumFacing getFacing() {
-		return world.getBlockState(pos).getValue(BlockFacing.FACING);
+		return world.getBlockState(pos).getValue(BlockHorizontal.FACING);
 	}
 
 	public void sortItemStack(ItemStack stack) {

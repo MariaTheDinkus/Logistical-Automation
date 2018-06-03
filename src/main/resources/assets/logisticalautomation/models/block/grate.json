@@ -1,7 +1,7 @@
 {
     "parent": "block/block",
     "textures": {
-        "0": "blocks/iron_bars",
+        "0": "logisticalautomation:blocks/open_iron_grate",
         "1": "logisticalautomation:blocks/metal_side"
     },
    "display":{  

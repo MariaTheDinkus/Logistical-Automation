@@ -5,10 +5,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -67,6 +69,8 @@ public class BlockFilter extends BlockFacing implements IWrenchable, IShowHopper
 					TileEntityFilter tileSorter = (TileEntityFilter) worldIn.getTileEntity(pos);
 
 					tileSorter.sortItemStack(entityItem.getItem());
+
+					worldIn.playSound(null, pos, SoundEvents.BLOCK_PISTON_EXTEND, SoundCategory.BLOCKS, 0.1F, 1);
 
 					entityIn.setDead();
 				}

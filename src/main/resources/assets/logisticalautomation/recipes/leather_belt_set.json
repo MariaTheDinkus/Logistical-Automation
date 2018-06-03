@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "logisticalautomation:leather_belt_set",
+    "count": 1
+  },
+  "pattern": [
+    "LLL"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "L": {
+      "item": "minecraft:leather",
+      "data": 0
+    }
+  }
+}

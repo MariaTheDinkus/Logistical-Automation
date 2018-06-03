@@ -62,6 +62,13 @@ public class LogisticCreativeTabs {
 
 			this.addItem(ItemRegistry.logistic_wrench);
 
+			this.addItem(ItemRegistry.iron_stick);
+			this.addItem(ItemRegistry.roller_set);
+            this.addItem(ItemRegistry.iron_motor_set);
+            this.addItem(ItemRegistry.gold_motor_set);
+            this.addItem(ItemRegistry.diamond_motor_set);
+            this.addItem(ItemRegistry.leather_belt_set);
+
 			this.addBlock(BlockRegistry.conveyor_normal);
 			this.addBlock(BlockRegistry.conveyor_fast);
 			this.addBlock(BlockRegistry.conveyor_express);
@@ -77,12 +84,16 @@ public class LogisticCreativeTabs {
 			this.addBlock(BlockRegistry.filter);
 			this.addBlock(BlockRegistry.splitter);
 			this.addBlock(BlockRegistry.junction);
+			this.addBlock(BlockRegistry.halver);
+
+			this.addBlock(BlockRegistry.blowtorch);
+			this.addBlock(BlockRegistry.poly_blowtorch);
 
 			this.addBlock(BlockRegistry.grate);
 
 			this.addBlock(BlockRegistry.catwalk);
-
 			this.addBlock(BlockRegistry.catwalk_stairs);
+			this.addBlock(BlockRegistry.catwalk_pillar);
 		}
 
 		private void addItem(Item item) {

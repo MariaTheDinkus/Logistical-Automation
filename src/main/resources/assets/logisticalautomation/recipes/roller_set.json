@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "logisticalautomation:roller_set",
+    "count": 1
+  },
+  "pattern": [
+    "BBB"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "logisticalautomation:iron_stick",
+      "data": 0
+    }
+  }
+}

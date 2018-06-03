@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "logisticalautomation:catwalk_pillar",
+    "count": 4
+  },
+  "pattern": [
+    "B B",
+    "B B"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "logisticalautomation:iron_stick",
+      "data": 0
+    }
+  }
+}

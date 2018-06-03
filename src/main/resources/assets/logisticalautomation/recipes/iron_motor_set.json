@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "logisticalautomation:iron_motor_set",
+    "count": 1
+  },
+  "pattern": [
+    "IR",
+	"IB",
+	"IR"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot",
+      "data": 0
+    },
+	"B": {
+      "item": "logisticalautomation:iron_stick",
+      "data": 0
+    },
+	"R": {
+      "item": "minecraft:redstone",
+      "data": 0
+    }
+  }
+}

@@ -1,5 +1,8 @@
 package com.zundrel.logisticalautomation.common.registry;
 
+import com.zundrel.logisticalautomation.common.blocks.BlockClear;
+import com.zundrel.logisticalautomation.common.blocks.decor.BlockCatwalkPillar;
+import com.zundrel.logisticalautomation.common.blocks.machines.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
@@ -12,10 +15,6 @@ import com.zundrel.logisticalautomation.api.EnumConveyorTier;
 import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
 import com.zundrel.logisticalautomation.common.blocks.decor.BlockCatwalk;
 import com.zundrel.logisticalautomation.common.blocks.decor.BlockCatwalkStairs;
-import com.zundrel.logisticalautomation.common.blocks.machines.BlockFilter;
-import com.zundrel.logisticalautomation.common.blocks.machines.BlockGrate;
-import com.zundrel.logisticalautomation.common.blocks.machines.BlockJunction;
-import com.zundrel.logisticalautomation.common.blocks.machines.BlockSplitter;
 import com.zundrel.logisticalautomation.common.blocks.machines.conveyors.BlockFlatConveyor;
 import com.zundrel.logisticalautomation.common.blocks.machines.conveyors.BlockStairConveyor;
 import com.zundrel.logisticalautomation.common.blocks.machines.conveyors.BlockVerticalConveyor;
@@ -32,16 +31,18 @@ public class BlockRegistry {
 	public static Block conveyor_net;
 
 	public static Block filter;
-
 	public static Block splitter;
-
 	public static Block junction;
+	public static Block halver;
+
+	public static Block blowtorch;
+	public static Block poly_blowtorch;
 
 	public static Block grate;
 
 	public static Block catwalk;
-
 	public static Block catwalk_stairs;
+	public static Block catwalk_pillar;
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -62,16 +63,18 @@ public class BlockRegistry {
 		register(conveyor_net = new BlockFacing("conveyor_net", Material.ROCK));
 
 		register(filter = new BlockFilter("filter", Material.ROCK));
-
 		register(splitter = new BlockSplitter("splitter", Material.ROCK));
-
 		register(junction = new BlockJunction("junction", Material.ROCK));
+		register(halver = new BlockHalver("halver", Material.ROCK));
+
+		register(blowtorch = new BlockBlowtorch("blowtorch", Material.ROCK));
+		register(poly_blowtorch = new BlockPolyBlowtorch("poly_blowtorch", Material.ROCK));
 
 		register(grate = new BlockGrate("grate", Material.ROCK));
 
 		register(catwalk = new BlockCatwalk("catwalk", Material.ROCK));
-
 		register(catwalk_stairs = new BlockCatwalkStairs("catwalk_stairs", Material.ROCK));
+		register(catwalk_pillar = new BlockCatwalkPillar("catwalk_pillar", Material.ROCK));
 	}
 
 	public static <T extends Block> T register(T b, ItemBlock ib) {

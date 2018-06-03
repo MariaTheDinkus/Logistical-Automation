@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "logisticalautomation:iron_stick",
+    "count": 6
+  },
+  "pattern": [
+    "I",
+    "I",
+    "I"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot",
+      "data": 0
+    }
+  }
+}

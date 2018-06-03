@@ -18,7 +18,7 @@
       },
       "false": {
         "textures": {
-         "0": "logisticalautomation:blocks/closed_iron_bars" 
+         "0": "logisticalautomation:blocks/closed_iron_grate" 
         }
       }
     }

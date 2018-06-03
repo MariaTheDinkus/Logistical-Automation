@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "logisticalautomation:conveyor_normal",
+    "count": 8
+  },
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "logisticalautomation:roller_set",
+      "data": 0
+    },
+	{
+      "item": "logisticalautomation:iron_motor_set",
+      "data": 0
+    },
+	{
+      "item": "logisticalautomation:leather_belt_set",
+      "data": 0
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "minecraft:iron_bars",
+    "count": 8
+  },
+  "pattern": [
+    "BBB",
+    "BBB"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "logisticalautomation:iron_stick",
+      "data": 0
+    }
+  }
+}

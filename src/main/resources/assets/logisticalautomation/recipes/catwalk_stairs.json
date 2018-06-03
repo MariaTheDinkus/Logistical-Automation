@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "logisticalautomation:catwalk_stairs",
+    "count": 4
+  },
+  "pattern": [
+    "C  ",
+	"CC ",
+    "CCC"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "logisticalautomation:catwalk",
+      "data": 0
+    }
+  }
+}

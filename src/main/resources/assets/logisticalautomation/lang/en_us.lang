@@ -28,9 +28,23 @@ tile.logisticalautomation:conveyor_vertical_express.name=Express Vertical Convey
 tile.logisticalautomation:filter.name=Filter
 tile.logisticalautomation:splitter.name=Splitter
 tile.logisticalautomation:junction.name=Junction
+tile.logisticalautomation:halver.name=Halver
+
+tile.logisticalautomation:blowtorch.name=Blowtorch
+tile.logisticalautomation:poly_blowtorch.name=Polydirectional Blowtorch
 
 tile.logisticalautomation:grate.name=Grate
 
+tile.logisticalautomation:catwalk.name=Catwalk
+tile.logisticalautomation:catwalk_stairs.name=Catwalk Stairs
+tile.logisticalautomation:catwalk_pillar.name=Catwalk Support Pillars
+
 #Items
+
+item.logisticalautomation:iron_stick.name=Iron Stick
+item.logisticalautomation:iron_motor_set.name=Iron Motor Set
+item.logisticalautomation:gold_motor_set.name=Gold Motor Set
+item.logisticalautomation:diamond_motor_set.name=Diamond Motor Set
+item.logisticalautomation:leather_belt_set.name=Leather Belt Set
 
 item.logisticalautomation:logistic_wrench.name=Logistic Wrench

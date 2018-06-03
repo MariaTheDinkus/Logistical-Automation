@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "logisticalautomation:logistic_wrench",
+    "count": 1
+  },
+  "pattern": [
+    "B B",
+    " B ",
+	" B "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "logisticalautomation:iron_stick",
+      "data": 0
+    }
+  }
+}

@@ -2,6 +2,8 @@ package com.zundrel.logisticalautomation.common.registry;
 
 import javax.annotation.Nonnull;
 
+import amerifrance.guideapi.api.GuideAPI;
+import com.zundrel.logisticalautomation.compat.guide.GuideLogisticalAutomation;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -60,6 +62,7 @@ public class LogisticCreativeTabs {
 		public void displayAllRelevantItems(@Nonnull NonNullList<ItemStack> list) {
 			this.list = list;
 
+			this.addItem(GuideAPI.getStackFromBook(GuideLogisticalAutomation.logisticsGuide).getItem());
 			this.addItem(ItemRegistry.logistic_wrench);
 
 			this.addItem(ItemRegistry.iron_stick);
@@ -68,18 +71,6 @@ public class LogisticCreativeTabs {
             this.addItem(ItemRegistry.gold_motor_set);
             this.addItem(ItemRegistry.diamond_motor_set);
             this.addItem(ItemRegistry.leather_belt_set);
-
-			this.addBlock(BlockRegistry.conveyor_normal);
-			this.addBlock(BlockRegistry.conveyor_fast);
-			this.addBlock(BlockRegistry.conveyor_express);
-
-			this.addBlock(BlockRegistry.conveyor_stair_normal);
-			this.addBlock(BlockRegistry.conveyor_stair_fast);
-			this.addBlock(BlockRegistry.conveyor_stair_express);
-
-			this.addBlock(BlockRegistry.conveyor_vertical_normal);
-			this.addBlock(BlockRegistry.conveyor_vertical_fast);
-			this.addBlock(BlockRegistry.conveyor_vertical_express);
 
 			this.addBlock(BlockRegistry.filter);
 			this.addBlock(BlockRegistry.splitter);
@@ -94,6 +85,18 @@ public class LogisticCreativeTabs {
 			this.addBlock(BlockRegistry.catwalk);
 			this.addBlock(BlockRegistry.catwalk_stairs);
 			this.addBlock(BlockRegistry.catwalk_pillar);
+
+            this.addBlock(BlockRegistry.conveyor_normal);
+            this.addBlock(BlockRegistry.conveyor_fast);
+            this.addBlock(BlockRegistry.conveyor_express);
+
+            this.addBlock(BlockRegistry.conveyor_stair_normal);
+            this.addBlock(BlockRegistry.conveyor_stair_fast);
+            this.addBlock(BlockRegistry.conveyor_stair_express);
+
+            this.addBlock(BlockRegistry.conveyor_vertical_normal);
+            this.addBlock(BlockRegistry.conveyor_vertical_fast);
+            this.addBlock(BlockRegistry.conveyor_vertical_express);
 		}
 
 		private void addItem(Item item) {

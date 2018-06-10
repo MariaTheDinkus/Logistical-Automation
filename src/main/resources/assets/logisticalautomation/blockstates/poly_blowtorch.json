@@ -1,0 +1,25 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "logisticalautomation:poly_blowtorch"
+  },
+  "variants": {
+    "normal": [
+      {
+        "model": "logisticalautomation:poly_blowtorch"
+      }
+    ],
+    "inventory": [
+      {}
+    ],
+    "powered": {
+      "true": {
+        "textures": {
+          "0": "logisticalautomation:blocks/blowtorch_on"
+        }
+      },
+      "false": {
+      }
+    }
+  }
+}

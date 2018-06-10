@@ -1,0 +1,72 @@
+{
+	"textures": {
+		"0": "logisticalautomation:items/conveyor_belt",
+		"particle": "logisticalautomation:items/conveyor_belt"
+	},
+	"elements": [
+		{
+			"from": [2, 1, 7],
+			"to": [14, 3, 9],
+			"faces": {
+				"north": {"uv": [12, 0, 14, 12], "texture": "#0", "rotation": 90},
+				"east": {"uv": [12, 0, 14, 2], "texture": "#0", "rotation": 90},
+				"south": {"uv": [12, 0, 14, 12], "texture": "#0", "rotation": 90},
+				"west": {"uv": [12, 0, 14, 2], "texture": "#0", "rotation": 90},
+				"up": {"uv": [12, 0, 14, 12], "texture": "#0", "rotation": 90},
+				"down": {"uv": [12, 0, 14, 12], "texture": "#0", "rotation": 90}
+			}
+		},
+		{
+			"from": [2.5, 0, 6],
+			"to": [13.5, 4, 10],
+			"faces": {
+				"north": {"uv": [0, 12, 11, 16], "texture": "#0", "rotation": 180},
+				"east": {"uv": [6, 5, 2, 1], "texture": "#0"},
+				"south": {"uv": [0, 4, 11, 8], "texture": "#0"},
+				"west": {"uv": [2, 1, 6, 5], "texture": "#0"},
+				"up": {"uv": [0, 0, 11, 4], "texture": "#0"},
+				"down": {"uv": [0, 8, 11, 12], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"head": {
+			"scale": [1.3, 1.3, 1.3],
+			"translation": [0, 0, -5]
+		},
+		"thirdperson_righthand": {
+			"scale": [0.55, 0.55, 0.55],
+			"rotation": [0, 0, 0],
+			"translation": [0, 3, 1]
+		},
+		"thirdperson_lefthand": {
+			"scale": [0.55, 0.55, 0.55],
+			"rotation": [0, 0, 0],
+			"translation": [0, 3, 1]
+		},
+		"firstperson_righthand": {
+			"scale": [0.68, 0.68, 0.68],
+			"rotation": [0, 90, 78],
+			"translation": [0, 5, 5]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.68, 0.68, 0.68],
+			"rotation": [0, 90, 78],
+			"translation": [0, 5, 5]
+		},
+		"ground": {
+			"scale": [0.5, 0.5, 0.5],
+			"rotation": [0, 0, 0],
+			"translation": [0, 2, 0]
+		},
+		"fixed": {
+			"rotation": [0, 0, 90],
+			"translation": [-6, 0, 0]
+		},
+		"gui": {
+			"scale": [1.2, 1.2, 1.2],
+			"rotation": [0, -45, -70],
+			"translation": [4.5, 2.5, 0]
+		}
+	}
+}

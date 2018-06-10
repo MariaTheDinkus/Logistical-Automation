@@ -15,7 +15,7 @@ import com.zundrel.logisticalautomation.common.info.ModInfo;
 import com.zundrel.logisticalautomation.common.network.MessageButton;
 import com.zundrel.logisticalautomation.common.registry.TileRegistry;
 
-@Mod(name = ModInfo.MOD_NAME, modid = ModInfo.MOD_ID, version = ModInfo.MOD_VERSION)
+@Mod(name = ModInfo.MOD_NAME, modid = ModInfo.MOD_ID, version = ModInfo.MOD_VERSION, dependencies = "required-after:guideapi")
 public class LogisticalAutomation {
 	@Mod.Instance(ModInfo.MOD_ID)
 	public static LogisticalAutomation instance;

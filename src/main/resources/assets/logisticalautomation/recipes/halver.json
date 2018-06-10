@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "logisticalautomation:halver",
+    "count": 1
+  },
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_bars",
+      "data": 0
+    },
+	{
+		"item": "logisticalautomation:splitter",
+		"data": 0
+	},
+	{
+		"item": "logisticalautomation:gold_motor_set",
+		"data": 0
+	}
+  ]
+}

@@ -22,13 +22,10 @@ public class TileEntityPolyBlowtorch extends TileEntity implements ITickable {
 
         if (getWorld().getTotalWorldTime() % 40 == 0) {
             if (blowtorch.getValue(BlockBlowtorch.POWERED)) {
-                BlockPos flameDir = new BlockPos(0, 0, 0).offset(blowtorch.getValue(BlockBlowtorch.FACING));
-
                 int particleAmount = 14;
 
                 for (int i = 0; i < particleAmount; i++) {
-                    double change = i * 0.01;
-                    double changeDir = i * (1.5 / particleAmount);
+                    double changeDir = i * (1.05 / particleAmount) + 0.45;
 
                     EnumParticleTypes type = EnumParticleTypes.SMOKE_NORMAL;
 
@@ -36,14 +33,14 @@ public class TileEntityPolyBlowtorch extends TileEntity implements ITickable {
                         type = EnumParticleTypes.FLAME;
                     }
 
-                    getWorld().spawnParticle(type, getPos().getX() + 0.5, getPos().getY() + 0.5 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 + changeDir, 0,0.005, 0.03);
-                    getWorld().spawnParticle(type, getPos().getX() + 0.5 + changeDir, getPos().getY() + 0.5 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 + changeDir, 0.03,0.005, 0.03);
-                    getWorld().spawnParticle(type, getPos().getX() + 0.5 + changeDir, getPos().getY() + 0.5 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5, 0.03,0.005, 0);
-                    getWorld().spawnParticle(type, getPos().getX() + 0.5 + changeDir, getPos().getY() + 0.5 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 - changeDir, 0.03,0.005, -0.03);
-                    getWorld().spawnParticle(type, getPos().getX() + 0.5, getPos().getY() + 0.5 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 - changeDir, 0,0.005, -0.03);
-                    getWorld().spawnParticle(type, getPos().getX() + 0.5 - changeDir, getPos().getY() + 0.5 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 - changeDir, -0.03,0.005, -0.03);
-                    getWorld().spawnParticle(type, getPos().getX() + 0.5 - changeDir, getPos().getY() + 0.5 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5, -0.03,0.005, 0);
-                    getWorld().spawnParticle(type, getPos().getX() + 0.5 - changeDir, getPos().getY() + 0.5 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 + changeDir, -0.03,0.005, 0.03);
+                    getWorld().spawnParticle(type, getPos().getX() + 0.5, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 + changeDir, 0,0.005, 0.03);
+                    getWorld().spawnParticle(type, getPos().getX() + 0.5 + changeDir, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 + changeDir, 0.03,0.005, 0.03);
+                    getWorld().spawnParticle(type, getPos().getX() + 0.5 + changeDir, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5, 0.03,0.005, 0);
+                    getWorld().spawnParticle(type, getPos().getX() + 0.5 + changeDir, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 - changeDir, 0.03,0.005, -0.03);
+                    getWorld().spawnParticle(type, getPos().getX() + 0.5, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 - changeDir, 0,0.005, -0.03);
+                    getWorld().spawnParticle(type, getPos().getX() + 0.5 - changeDir, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 - changeDir, -0.03,0.005, -0.03);
+                    getWorld().spawnParticle(type, getPos().getX() + 0.5 - changeDir, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5, -0.03,0.005, 0);
+                    getWorld().spawnParticle(type, getPos().getX() + 0.5 - changeDir, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 + changeDir, -0.03,0.005, 0.03);
 
                     for (Object obj : entities) {
                         EntityLivingBase entity = (EntityLivingBase) obj;

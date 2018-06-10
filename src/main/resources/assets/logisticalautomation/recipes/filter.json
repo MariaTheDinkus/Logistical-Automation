@@ -1,0 +1,30 @@
+{
+  "result": {
+    "item": "logisticalautomation:filter",
+    "count": 1
+  },
+  "pattern": [
+    "III",
+	"pMp",
+    "IPI"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "P": {
+      "item": "minecraft:piston",
+      "data": 0
+    },
+	"M": {
+		"item": "logisticalautomation:iron_motor_set",
+		"data": 0
+	},
+	"p": {
+		"item": "minecraft:paper",
+		"data": 0
+	},
+	"I": {
+		"item": "minecraft:iron_ingot",
+		"data": 0
+	}
+  }
+}

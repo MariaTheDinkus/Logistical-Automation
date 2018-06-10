@@ -10,7 +10,7 @@
     "authorList": [
       "Zundrel"
     ],
-    "credits": "MrRiegel and TechmageDE for their Filter utility from Industrial Conveyor Belts and examples from their filtering code.",
+    "credits": "MrRiegel and TechmageDE for their Filter utility from Industrial Conveyor Belts and examples from their filtering code. Thanks to WayOfTime for examples and code from using Guide API in Blood Magic.",
     "screenshots": [],
     "dependencies": [
       "mod_MinecraftForge"

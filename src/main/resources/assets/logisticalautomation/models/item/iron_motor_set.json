@@ -1,0 +1,6 @@
+{
+  "parent": "logisticalautomation:item/motor",
+  "textures": {
+    "layer0": "logisticalautomation:items/motor_iron"
+  }
+}

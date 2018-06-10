@@ -4,13 +4,17 @@
     "count": 1
   },
   "pattern": [
-    "LLL"
+    "LIL"
   ],
   "type": "minecraft:crafting_shaped",
   "key": {
     "L": {
       "item": "minecraft:leather",
       "data": 0
-    }
+    },
+	"I": {
+	  "item": "logisticalautomation:iron_stick",
+	  "data": 0
+	}
   }
 }

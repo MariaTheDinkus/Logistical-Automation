@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "logisticalautomation:junction",
+    "count": 1
+  },
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:lever",
+      "data": 0
+    },
+	{
+		"item": "logisticalautomation:splitter",
+		"data": 0
+	},
+	{
+		"item": "minecraft:redstone",
+		"data": 0
+	}
+  ]
+}

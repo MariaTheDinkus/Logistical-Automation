@@ -1,0 +1,7 @@
+{
+  "parent": "logisticalautomation:item/motor",
+  "textures": {
+		"0": "logisticalautomation:items/motor_diamond",
+		"particle": "logisticalautomation:items/motor_diamond"
+	}
+}

@@ -31,7 +31,7 @@ tile.logisticalautomation:junction.name=Junction
 tile.logisticalautomation:halver.name=Halver
 
 tile.logisticalautomation:blowtorch.name=Blowtorch
-tile.logisticalautomation:poly_blowtorch.name=Polydirectional Blowtorch
+tile.logisticalautomation:poly_blowtorch.name=Octodirectional Blowtorch
 
 tile.logisticalautomation:grate.name=Grate
 
@@ -42,6 +42,7 @@ tile.logisticalautomation:catwalk_pillar.name=Catwalk Support Pillars
 #Items
 
 item.logisticalautomation:iron_stick.name=Iron Stick
+item.logisticalautomation:roller_set.name=Roller Set
 item.logisticalautomation:iron_motor_set.name=Iron Motor Set
 item.logisticalautomation:gold_motor_set.name=Gold Motor Set
 item.logisticalautomation:diamond_motor_set.name=Diamond Motor Set

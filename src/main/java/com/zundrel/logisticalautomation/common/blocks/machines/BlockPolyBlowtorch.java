@@ -1,8 +1,7 @@
 package com.zundrel.logisticalautomation.common.blocks.machines;
 
 import com.zundrel.logisticalautomation.api.IWrenchable;
-import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
-import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityBlowtorch;
+import com.zundrel.logisticalautomation.common.blocks.BlockBasic;
 import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityPolyBlowtorch;
 import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
 import net.minecraft.block.Block;
@@ -12,7 +11,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,7 +20,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockPolyBlowtorch extends BlockFacing implements IWrenchable {
+public class BlockPolyBlowtorch extends BlockBasic {
 	public static final PropertyBool POWERED = PropertyBool.create("powered");
 
 	public BlockPolyBlowtorch(String unlocalizedName, Material material) {
@@ -32,15 +30,18 @@ public class BlockPolyBlowtorch extends BlockFacing implements IWrenchable {
 	}
 
 	@Override
-	@Nonnull
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.TRANSLUCENT;
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean isOpaqueCube(IBlockState blockState) {
+		return false;
 	}
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, FACING, POWERED);
+		return new BlockStateContainer(this, POWERED);
 	}
 
 	@Override

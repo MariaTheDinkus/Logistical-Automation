@@ -39,10 +39,13 @@ public class BlockBlowtorch extends BlockFacing implements IWrenchable {
 	}
 
 	@Override
-	@Nonnull
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.TRANSLUCENT;
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean isOpaqueCube(IBlockState blockState) {
+		return false;
 	}
 
 	@Override

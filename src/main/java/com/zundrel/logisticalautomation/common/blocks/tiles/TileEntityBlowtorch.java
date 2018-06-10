@@ -40,9 +40,31 @@ public class TileEntityBlowtorch extends TileEntity implements ITickable {
                 int particleAmount = 14;
 
                 for (int i = 0; i < particleAmount; i++) {
-                    double change = i * 0.01;
-                    double changeX = i * flameDir.getX() * (1.5 / particleAmount);
-                    double changeZ = i * flameDir.getZ() * (1.5 / particleAmount);
+                    double changeX = (i * flameDir.getX()) * (1.05 / particleAmount);
+                    double changeZ = (i * flameDir.getZ()) * (1.05 / particleAmount);
+
+                    double offsetX = 0;
+                    double offsetZ = 0;
+
+                    if (flameDir.getX() != 0) {
+                        if (flameDir.getX() >= 1) {
+                            offsetX = flameDir.getX() != 0 ? 0.45 : 0;
+                        }
+
+                        if (flameDir.getX() <= -1) {
+                            offsetX = flameDir.getX() != 0 ? -0.45 : 0;
+                        }
+                    }
+
+                    if (flameDir.getZ() != 0) {
+                        if (flameDir.getZ() >= 1) {
+                            offsetZ = flameDir.getZ() != 0 ? 0.45 : 0;
+                        }
+
+                        if (flameDir.getZ() <= -1) {
+                            offsetZ = flameDir.getZ() != 0 ? -0.45 : 0;
+                        }
+                    }
 
                     EnumParticleTypes type = EnumParticleTypes.SMOKE_NORMAL;
 
@@ -50,7 +72,7 @@ public class TileEntityBlowtorch extends TileEntity implements ITickable {
                         type = EnumParticleTypes.FLAME;
                     }
 
-                    getWorld().spawnParticle(type, getPos().getX() + 0.5 + changeX, getPos().getY() + 0.5 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 + changeZ, flameDir.getX() * 0.03,0.005, flameDir.getZ() * 0.03);
+                    getWorld().spawnParticle(type, getPos().getX() + 0.5 + offsetX + changeX, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 + offsetZ + changeZ, flameDir.getX() * 0.03,0.005, flameDir.getZ() * 0.03);
                 }
 
                 for (Object obj : entities) {

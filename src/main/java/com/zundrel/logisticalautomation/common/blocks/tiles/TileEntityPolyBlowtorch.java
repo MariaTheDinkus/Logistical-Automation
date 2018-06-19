@@ -3,10 +3,12 @@ package com.zundrel.logisticalautomation.common.blocks.tiles;
 import com.zundrel.logisticalautomation.common.blocks.machines.BlockBlowtorch;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 
@@ -49,6 +51,8 @@ public class TileEntityPolyBlowtorch extends TileEntity implements ITickable {
                         entity.setFire(2);
                     }
                 }
+
+                getWorld().playSound(null, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 0.6F, 1);
             }
 
         }

@@ -23,15 +23,20 @@ public class SlotFilter extends SlotItemHandler {
 		return ItemStack.EMPTY;
 	}
 
-	@Override
+    @Override
 	public void putStack(ItemStack stack) {
 		super.putStack(stack.isEmpty() ? stack : ItemHandlerHelper.copyStackWithSize(stack, 1));
 	}
 
-	@Override
+    @Override
+    public ItemStack onTake(EntityPlayer thePlayer, ItemStack stack) {
+	    stack.setCount(0);
+
+        return ItemStack.EMPTY;
+    }
+
+    @Override
 	public boolean isItemValid(ItemStack stack) {
-		if (player == null || player.inventory.getItemStack().isEmpty())
-			return isItemValid(stack);
 		putStack(stack);
 		return false;
 	}

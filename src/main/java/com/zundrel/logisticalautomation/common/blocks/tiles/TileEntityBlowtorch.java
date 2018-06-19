@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -74,6 +75,8 @@ public class TileEntityBlowtorch extends TileEntity implements ITickable {
 
                     getWorld().spawnParticle(type, getPos().getX() + 0.5 + offsetX + changeX, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 + offsetZ + changeZ, flameDir.getX() * 0.03,0.005, flameDir.getZ() * 0.03);
                 }
+
+                getWorld().playSound(null, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 0.6F, 1);
 
                 for (Object obj : entities) {
                     EntityLivingBase entity = (EntityLivingBase) obj;

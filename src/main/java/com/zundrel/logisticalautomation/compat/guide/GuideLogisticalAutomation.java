@@ -10,7 +10,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.zundrel.logisticalautomation.common.registry.BlockRegistry;
+import com.zundrel.logisticalautomation.common.registry.ItemRegistry;
 import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs;
+import com.zundrel.logisticalautomation.compat.guide.book.CategoryComponents;
+import com.zundrel.logisticalautomation.compat.guide.book.CategoryConveyors;
+import com.zundrel.logisticalautomation.compat.guide.book.CategoryDecor;
 import com.zundrel.logisticalautomation.compat.guide.book.CategoryMachines;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -53,7 +57,10 @@ public class GuideLogisticalAutomation implements IGuideBook {
 
     @Override
     public void handlePost(ItemStack bookStack) {
-        logisticsGuide.addCategory(new CategoryItemStack(CategoryMachines.buildCategory(), "guide.logisticalautomation.category.machines", new ItemStack(BlockRegistry.conveyor_normal)));
+		logisticsGuide.addCategory(new CategoryItemStack(CategoryComponents.buildCategory(), "guide.logisticalautomation.category.components", new ItemStack(ItemRegistry.logistic_wrench)));
+        logisticsGuide.addCategory(new CategoryItemStack(CategoryConveyors.buildCategory(), "guide.logisticalautomation.category.conveyors", new ItemStack(BlockRegistry.conveyor_normal)));
+		logisticsGuide.addCategory(new CategoryItemStack(CategoryMachines.buildCategory(), "guide.logisticalautomation.category.machines", new ItemStack(Blocks.BARRIER)));
+		logisticsGuide.addCategory(new CategoryItemStack(CategoryDecor.buildCategory(), "guide.logisticalautomation.category.decor", new ItemStack(BlockRegistry.catwalk)));
     }
 
 	@SideOnly(Side.CLIENT)

@@ -1,5 +1,6 @@
 package com.zundrel.logisticalautomation;
 
+import com.zundrel.logisticalautomation.api.QuadBooleanDirs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

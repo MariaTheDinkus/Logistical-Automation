@@ -13,8 +13,8 @@ import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.zundrel.logisticalautomation.api.EnumConveyorTier;
-import com.zundrel.logisticalautomation.api.IConveyor;
+import com.zundrel.logisticalautomation.api.conveyor.EnumConveyorTier;
+import com.zundrel.logisticalautomation.api.conveyor.IConveyor;
 import com.zundrel.logisticalautomation.api.IWrenchable;
 import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
 import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;

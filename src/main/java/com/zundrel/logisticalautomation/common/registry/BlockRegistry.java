@@ -1,6 +1,5 @@
 package com.zundrel.logisticalautomation.common.registry;
 
-import com.zundrel.logisticalautomation.common.blocks.BlockClear;
 import com.zundrel.logisticalautomation.common.blocks.decor.BlockCatwalkPillar;
 import com.zundrel.logisticalautomation.common.blocks.machines.*;
 import net.minecraft.block.Block;
@@ -11,8 +10,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import com.zundrel.logisticalautomation.api.EnumConveyorTier;
-import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
+import com.zundrel.logisticalautomation.api.conveyor.EnumConveyorTier;
 import com.zundrel.logisticalautomation.common.blocks.decor.BlockCatwalk;
 import com.zundrel.logisticalautomation.common.blocks.decor.BlockCatwalkStairs;
 import com.zundrel.logisticalautomation.common.blocks.machines.conveyors.BlockFlatConveyor;
@@ -31,9 +29,9 @@ public class BlockRegistry {
 	public static Block conveyor_net;
 
 	public static Block filter;
-	public static Block splitter;
+	public static Block alternator;
 	public static Block junction;
-	public static Block halver;
+	public static Block splitter;
 
 	public static Block blowtorch;
 	public static Block poly_blowtorch;
@@ -60,12 +58,10 @@ public class BlockRegistry {
 		register(conveyor_stair_fast = new BlockStairConveyor("conveyor_stair_fast", Material.ROCK, EnumConveyorTier.FAST));
 		register(conveyor_stair_express = new BlockStairConveyor("conveyor_stair_express", Material.ROCK, EnumConveyorTier.EXPRESS));
 
-		register(conveyor_net = new BlockFacing("conveyor_net", Material.ROCK));
-
 		register(filter = new BlockFilter("filter", Material.ROCK));
-		register(splitter = new BlockSplitter("splitter", Material.ROCK));
+		register(alternator = new BlockAlternator("alternator", Material.ROCK));
 		register(junction = new BlockJunction("junction", Material.ROCK));
-		register(halver = new BlockHalver("halver", Material.ROCK));
+		register(splitter = new BlockSplitter("splitter", Material.ROCK));
 
 		register(blowtorch = new BlockBlowtorch("blowtorch", Material.ROCK));
 		register(poly_blowtorch = new BlockPolyBlowtorch("poly_blowtorch", Material.ROCK));

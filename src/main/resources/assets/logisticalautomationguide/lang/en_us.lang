@@ -5,28 +5,65 @@ guide.logisticalautomation.author=Dr. Einberg Falkenstein
 guide.logisticalautomation.welcome=Choose Your Research
 
 # Categories
-guide.logisticalautomation.category.machines=Machinery
+guide.logisticalautomation.category.components=Components
+guide.logisticalautomation.category.conveyors=Conveyors
+guide.logisticalautomation.category.machines=Machines (Not Implemented)
+guide.logisticalautomation.category.decor=Decor
 
-#Machinery Master Entries
+#Components Master Entries
+guide.logisticalautomation.entry.components.intro=Introduction
+guide.logisticalautomation.entry,components.logistic_wrench=Logistic Wrench
+guide.logisticalautomation.entry.components.iron_sticks=Iron Sticks
+guide.logisticalautomation.entry.components.motors=Motor Sets
+guide.logisticalautomation.entry.components.leather_belts=Leather Belt Sets
+
+#Components Master Entry Text
+guide.logisticalautomation.entry.components.intro.info=Components are vital parts for creating all sorts of blocks and items detailed in this book.
+guide.logisticalautomation.entry.components.logistic_wrench.info=The Logistic Wrench is a tool used for everything from rotating machines and changing what direction escalators move.
+guide.logisticalautomation.entry.components.iron_sticks.info=Iron Sticks are small iron sticks which are used for everything from creating rollers, catwalks, motors, and more.
+guide.logisticalautomation.entry.components.motors.info=Motor Sets are used for the creation of all kinds of machines, and more specifically, conveyors.
+guide.logisticalautomation.entry.components.leather_belts.info=Leather Belt Sets are used for the creation of conveyors.
+
+#Conveyors Master Entries
+guide.logisticalautomation.entry.conveyors.intro=Introduction
+guide.logisticalautomation.entry.conveyors.normal=Normal Conveyors
+guide.logisticalautomation.entry.conveyors.vertical=Vertical Conveyors
+guide.logisticalautomation.entry.conveyors.stair=Escalators
+guide.logisticalautomation.entry.conveyors.filters=The Filter
+guide.logisticalautomation.entry.conveyors.alternators=The Halver
+guide.logisticalautomation.entry.conveyors.junctions=The Junction
+guide.logisticalautomation.entry.conveyors.splitters=The Splitter
+guide.logisticalautomation.entry.conveyors.blowtorches=The Blowtorch
+guide.logisticalautomation.entry.conveyors.poly_blowtorches=The Polydirectional Blowtorch
+guide.logisticalautomation.entry.conveyors.grates=The Grate
+
+#Conveyors Master Entry Text
+guide.logisticalautomation.entry.conveyors.intro.info=Conveyors are complex mechanisms used for transporting items, blocks, and even creatures around the world.
+guide.logisticalautomation.entry.conveyors.normal.info=Normal Conveyors are conveyors which move items, blocks, and creatures horizontally on the ground.
+guide.logisticalautomation.entry.conveyors.vertical.info=Vertical Conveyors are conveyors which move items, blocks, and creatures vertically upwards.
+guide.logisticalautomation.entry.conveyors.stair.info=Escalators are conveyors which are stair-shaped and move items, blocks, and creatures diagonally upwards.
+guide.logisticalautomation.entry.conveyors.filters.info=The Filter is a complex machine used for moving items and blocks of certain types in your chosen direction.
+guide.logisticalautomation.entry.conveyors.alternators.info=The Alternator is a simple machine which alternates the direction of any items (up to a stack of 64) which are inserted.
+guide.logisticalautomation.entry.conveyors.junctions.info=The Junction is an improved Alternator which lets you control its direction via redstone.
+guide.logisticalautomation.entry.conveyors.splitters.info=The Splitter is an upgraded Alternator that cuts each stack which enters it in half outputs them on opposite sides. (Note: If the stack is odd in size, the bigger half always comes out on the right)
+guide.logisticalautomation.entry.conveyors.blowtorches.info=The Blowtorch is a flamethrower which does three hearts of damage to the creature in front of it every two seconds.
+guide.logisticalautomation.entry.conveyors.poly_blowtorches.info=The Polydirectional Blowtorch is an upgraded Blowtorch which does three hearts of damage to every single creature around it every two seconds.
+guide.logisticalautomation.entry.conveyors.grates.info=The Grate is a simple block that let's small non-living entities pass through it while open. It can be controlled both by hand or via redstone.
+
+#Machines Master Entries
 guide.logisticalautomation.entry.machines.intro=Introduction
-guide.logisticalautomation.entry.machines.components=Making Stuff with Other Stuff
-guide.logisticalautomation.entry.machines.conveyors=Conveying Good Vibes
-guide.logisticalautomation.entry.machines.filters=Filtering Out Bad Juju
-guide.logisticalautomation.entry.machines.splitters=Oops Gotta Split
-guide.logisticalautomation.entry.machines.junctions=Construction Junction
-guide.logisticalautomation.entry.machines.halvers=Glass Half Full... or Empty?
-guide.logisticalautomation.entry.machines.blowtorches=We Didn't Start The Fire
-guide.logisticalautomation.entry.machines.grates=Grate To Meet You
-guide.logisticalautomation.entry.machines.catwalks=Can't-walk On Ground
 
-#Machinery Master Entry Text
-guide.logisticalautomation.entry.machines.intro.info=Salutations. My name is Dr. Einberg Falkenstein and I've been researching ways of automating various processes including but not limited to transport, slaughtering, and more. If you're reading this book you will find all of my knowledge and concepts for machinery I have created over the years. Keep in mind, using the knowledge and machinery I detail in this book will not be a simple task. You must carefully choose how to combine the different knowledge and machinery I give you to perform various complex functions. I wish you luck.
-guide.logisticalautomation.entry.machines.components.info=Making machines requires other custom components. Here's some schematics for the various components you'll need in various machines.
-guide.logisticalautomation.entry.machines.conveyors.info=Conveyors are complex mechanisms used for transporting all types of entities such as creatures, items, and more! They are your basic and only way of transporting these different entities. There's no simple way of sorting items manually simply using conveyors, but there are other ways which I will detail in future entries.
-guide.logisticalautomation.entry.machines.filters.info=The Filter is used for sending specific items different directions. You can sort by NBT, Metadata, Ore Dictionary, and even whitelist and blacklist items.
-guide.logisticalautomation.entry.machines.splitters.info=The Splitter sends every other item stack that goes into it left or right every other time one goes in. The direction it puts the next item on is shown on the front of the machine.
-guide.logisticalautomation.entry.machines.junctions.info=The Junction is an upgraded Splitter that changes direction based on redstone. The direction it puts the next item on is shown on the front of the machine.
-guide.logisticalautomation.entry.machines.halvers.info=The Halver is an upgraded Splitter that actually cuts stacks in half. Half of the stack will go out on the left side, and half will go out on the right side.
-guide.logisticalautomation.entry.machines.blowtorches.info=The Blowtorch let's you attack mobs for 3 Hearts every 2 seconds while it is powered by a redstone signal. There is also a version which shoots in all 8 directions instead of just one direction. You think with some upgrades you could make a version that smelts items with the down-side of allowing only one nozzle.
-guide.logisticalautomation.entry.machines.grates.info=The Grate is a block that let's small non-living entities pass through it while open. It can be controlled using either your hand or redstone.
-guide.logisticalautomation.entry.machines.catwalks.info=Catwalks are blocks which can be suspended in mid-air to use as walkways. They are available in three versions: normal, stairs, and pillars.
+#Machines Master Entry Text
+guide.logisticalautomation.entry.machines.intro.info=There are various useful machines you can create to automate different functions of your everyday life.
+
+#Decor Master Entries
+guide.logisticalautomation.entry.decor.intro=Introduction
+guide.logisticalautomation.entry.decor.catwalks=Catwalks
+guide.logisticalautomation.entry.decor.catwalk_stairs=Catwalk Stairs
+guide.logisticalautomation.entry.decor.catwalk_pillars=Catwalk Pillars
+
+#Decor Master Entry Text
+guide.logisticalautomation.entry.decor.intro.info=Decorational blocks are used for improving the look of the environment both inside and outside.
+guide.logisticalautomation.entry.decor.catwalks.info=Catwalks are blocks which can be suspended in mid-air to use as walkways.
+guide.logisticalautomation.entry.decor.catwalk_stairs.info=Catwalk Stairs are stairs which are designed to connect to catwalks.
+guide.logisticalautomation.entry.decor.catwalk_pillars.info=Catwalk Pillars are support pillars designed for holding up catwalks.

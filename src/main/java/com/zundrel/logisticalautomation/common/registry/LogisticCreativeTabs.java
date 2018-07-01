@@ -73,9 +73,9 @@ public class LogisticCreativeTabs {
             this.addItem(ItemRegistry.leather_belt_set);
 
 			this.addBlock(BlockRegistry.filter);
-			this.addBlock(BlockRegistry.splitter);
+			this.addBlock(BlockRegistry.alternator);
 			this.addBlock(BlockRegistry.junction);
-			this.addBlock(BlockRegistry.halver);
+			this.addBlock(BlockRegistry.splitter);
 
 			this.addBlock(BlockRegistry.blowtorch);
 			this.addBlock(BlockRegistry.poly_blowtorch);

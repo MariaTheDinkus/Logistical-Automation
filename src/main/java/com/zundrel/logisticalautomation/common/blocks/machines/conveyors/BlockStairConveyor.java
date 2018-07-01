@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.zundrel.logisticalautomation.api.EnumConveyorTier;
+import com.zundrel.logisticalautomation.api.conveyor.EnumConveyorTier;
 import com.zundrel.logisticalautomation.common.utilities.MovementUtilities;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
 
@@ -65,7 +65,7 @@ public class BlockStairConveyor extends BlockConveyor {
 	}
 
 	@Override
-	public void onWrenched(World world, BlockPos pos, EntityPlayer player) {
+	public void onWrenched(World world, BlockPos pos, EntityPlayer player, EnumFacing facing) {
 		if (!player.isSneaking()) {
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, world.getBlockState(pos).getValue(FACING).rotateY()));
 		} else {

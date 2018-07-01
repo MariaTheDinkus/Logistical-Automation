@@ -11,5 +11,6 @@ public class TileRegistry {
 	public static void init() {
 		GameRegistry.registerTileEntity(TileEntityFilter.class, ModInfo.MOD_ID + ":" + "filter");
 		GameRegistry.registerTileEntity(TileEntityBlowtorch.class, ModInfo.MOD_ID + ":" + "blowtorch");
-		GameRegistry.registerTileEntity(TileEntityPolyBlowtorch.class, ModInfo.MOD_ID + ":" + "poly_blowtorch");}
+		GameRegistry.registerTileEntity(TileEntityPolyBlowtorch.class, ModInfo.MOD_ID + ":" + "poly_blowtorch");
+	}
 }

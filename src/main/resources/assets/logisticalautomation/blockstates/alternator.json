@@ -5,7 +5,7 @@
       "block": "logisticalautomation:blocks/metal_side",
       "north": "logisticalautomation:blocks/empty",
       "east": "logisticalautomation:blocks/machine_output_east",
-      "south": "logisticalautomation:blocks/machine_halver",
+      "south": "logisticalautomation:blocks/machine_alternator_front_left",
       "west": "logisticalautomation:blocks/machine_output_west",
       "up": "logisticalautomation:blocks/empty",
       "down": "logisticalautomation:blocks/empty"
@@ -37,6 +37,15 @@
       },
       "down": {
         "x": 90
+      }
+    },
+    "right": {
+      "true": {
+        "textures": {
+          "south": "logisticalautomation:blocks/machine_alternator_front_right"
+        }
+      },
+      "false": {
       }
     }
   }

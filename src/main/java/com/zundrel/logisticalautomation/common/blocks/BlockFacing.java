@@ -51,7 +51,7 @@ public class BlockFacing extends BlockBasic implements IWrenchable {
 	}
 
 	@Override
-	public void onWrenched(World world, BlockPos pos, EntityPlayer player) {
+	public void onWrenched(World world, BlockPos pos, EntityPlayer player, EnumFacing facing) {
 		world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, world.getBlockState(pos).getValue(FACING).rotateY()));
 	}
 }

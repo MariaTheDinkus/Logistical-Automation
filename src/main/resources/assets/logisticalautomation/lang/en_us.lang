@@ -5,30 +5,30 @@ itemGroup.logisticalautomation_conveyor=Logistical Automation
 
 #Blocks
 
-tile.logisticalautomation:conveyor_normal.name=Normal Conveyor
+tile.logisticalautomation:conveyor_normal.name=Conveyor
 tile.logisticalautomation:conveyor_fast.name=Fast Conveyor
 tile.logisticalautomation:conveyor_express.name=Express Conveyor
 
-tile.logisticalautomation:conveyor_inverse_normal.name=Normal Inverse Conveyor
+tile.logisticalautomation:conveyor_inverse_normal.name=Inverse Conveyor
 tile.logisticalautomation:conveyor_inverse_fast.name=Fast Inverse Conveyor
 tile.logisticalautomation:conveyor_inverse_express.name=Express Inverse Conveyor
 
-tile.logisticalautomation:conveyor_stair_normal.name=Normal Stair Conveyor (Up)
-tile.logisticalautomation:conveyor_stair_fast.name=Fast Stair Conveyor (Up)
-tile.logisticalautomation:conveyor_stair_express.name=Express Stair Conveyor (Up)
+tile.logisticalautomation:conveyor_stair_normal.name=Escalator
+tile.logisticalautomation:conveyor_stair_fast.name=Fast Escalator
+tile.logisticalautomation:conveyor_stair_express.name=Express Escalator
 
-tile.logisticalautomation:conveyor_stair_down_normal.name=Normal Stair Conveyor (Down)
-tile.logisticalautomation:conveyor_stair_down_fast.name=Fast Stair Conveyor (Down)
-tile.logisticalautomation:conveyor_stair_down_express.name=Express Stair Conveyor (Down)
+tile.logisticalautomation:conveyor_stair_down_normal.name=Escalator
+tile.logisticalautomation:conveyor_stair_down_fast.name=Fast Escalator
+tile.logisticalautomation:conveyor_stair_down_express.name=Express Escalator
 
-tile.logisticalautomation:conveyor_vertical_normal.name=Normal Vertical Conveyor
+tile.logisticalautomation:conveyor_vertical_normal.name=Vertical Conveyor
 tile.logisticalautomation:conveyor_vertical_fast.name=Fast Vertical Conveyor
 tile.logisticalautomation:conveyor_vertical_express.name=Express Vertical Conveyor
 
 tile.logisticalautomation:filter.name=Filter
-tile.logisticalautomation:splitter.name=Splitter
+tile.logisticalautomation:alternator.name=Alternator
 tile.logisticalautomation:junction.name=Junction
-tile.logisticalautomation:halver.name=Halver
+tile.logisticalautomation:splitter.name=Splitter
 
 tile.logisticalautomation:blowtorch.name=Blowtorch
 tile.logisticalautomation:poly_blowtorch.name=Octodirectional Blowtorch
@@ -49,3 +49,7 @@ item.logisticalautomation:diamond_motor_set.name=Diamond Motor Set
 item.logisticalautomation:leather_belt_set.name=Leather Belt Set
 
 item.logisticalautomation:logistic_wrench.name=Logistic Wrench
+
+#Guide
+
+guide.conveyors.name=Conveying Good Vibes

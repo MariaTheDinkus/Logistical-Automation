@@ -16,8 +16,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-import com.zundrel.logisticalautomation.api.EnumConveyorTier;
-import com.zundrel.logisticalautomation.api.IShowHopper;
+import com.zundrel.logisticalautomation.api.conveyor.EnumConveyorTier;
+import com.zundrel.logisticalautomation.api.conveyor.IShowHopper;
 import com.zundrel.logisticalautomation.common.utilities.MovementUtilities;
 
 public class BlockFlatConveyor extends BlockConveyor {

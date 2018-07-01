@@ -1,8 +1,12 @@
 package com.zundrel.logisticalautomation.common.blocks.machines;
 
+import com.zundrel.logisticalautomation.api.conveyor.IShowHopper;
+import com.zundrel.logisticalautomation.api.IWrenchable;
+import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
+import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
+import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -18,19 +22,11 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.zundrel.logisticalautomation.api.IShowHopper;
-import com.zundrel.logisticalautomation.api.IWrenchable;
-import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
-import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
-
 public class BlockSplitter extends BlockFacing implements IWrenchable, IShowHopper {
-	public static final PropertyBool RIGHT = PropertyBool.create("right");
-
 	public BlockSplitter(String unlocalizedName, Material material) {
 		super(unlocalizedName, material, LogisticConveyorTab.INSTANCE);
 
-		setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH).withProperty(RIGHT, false));
+		setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	@Override
@@ -40,38 +36,7 @@ public class BlockSplitter extends BlockFacing implements IWrenchable, IShowHopp
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING, RIGHT });
-	}
-
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		boolean right = false;
-		if (String.valueOf(meta).length() == 2) {
-			right = true;
-		} else {
-			right = false;
-		}
-
-		int metaNew = 0;
-		if (String.valueOf(meta).length() == 1) {
-			metaNew = Integer.parseInt(String.valueOf(("" + meta).charAt(0)));
-		} else {
-			metaNew = Integer.parseInt(String.valueOf(("" + meta).charAt(1)));
-		}
-
-		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(metaNew)).withProperty(RIGHT, right);
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		int right = 0;
-		if (state.getValue(RIGHT) == false) {
-			right = 0;
-		} else {
-			right = 1;
-		}
-
-		return Integer.parseInt(right + "" + state.getValue(FACING).getIndex());
+		return new BlockStateContainer(this, new IProperty[] { FACING });
 	}
 
 	@Override
@@ -98,8 +63,23 @@ public class BlockSplitter extends BlockFacing implements IWrenchable, IShowHopp
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		if (!worldIn.isRemote) {
 			if (entityIn instanceof EntityItem && !entityIn.isDead) {
-				sortItemStack(((EntityItem) entityIn).getItem(), worldIn, pos, state.getValue(FACING), state.getValue(RIGHT));
-				worldIn.setBlockState(pos, state.withProperty(RIGHT, !state.getValue(RIGHT)));
+				ItemStack stack = ((EntityItem) entityIn).getItem();
+
+				int size = ((EntityItem) entityIn).getItem().getCount();
+				int smallHalf = size / 2;
+				int largeHalf = size - smallHalf;
+
+				ItemStack smallStack = stack.copy();
+				ItemStack largeStack = stack.copy();
+
+				smallStack.setCount(smallHalf);
+				largeStack.setCount(largeHalf);
+
+				if (smallStack.getCount() != 0) {
+					sortItemStack(smallStack, worldIn, pos, state.getValue(FACING), false);
+				}
+
+				sortItemStack(largeStack, worldIn, pos, state.getValue(FACING), true);
 
 				worldIn.playSound(null, pos, SoundEvents.BLOCK_PISTON_EXTEND, SoundCategory.BLOCKS, 0.1F, 1);
 

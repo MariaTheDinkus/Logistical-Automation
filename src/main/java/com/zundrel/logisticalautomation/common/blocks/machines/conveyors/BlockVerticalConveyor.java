@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.zundrel.logisticalautomation.api.EnumConveyorTier;
+import com.zundrel.logisticalautomation.api.conveyor.EnumConveyorTier;
 import com.zundrel.logisticalautomation.common.utilities.MovementUtilities;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
 

@@ -1,4 +1,4 @@
-package com.zundrel.logisticalautomation.api;
+package com.zundrel.logisticalautomation.api.conveyor;
 
 import net.minecraft.util.IStringSerializable;
 
@@ -8,7 +8,7 @@ public enum EnumConveyorTier implements IStringSerializable {
 	private String name;
 	private float speed;
 
-	private EnumConveyorTier(String name, float speed) {
+	EnumConveyorTier(String name, float speed) {
 		this.name = name;
 		this.speed = speed;
 	}

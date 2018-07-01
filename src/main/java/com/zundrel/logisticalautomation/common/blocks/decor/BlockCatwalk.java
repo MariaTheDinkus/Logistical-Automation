@@ -3,18 +3,30 @@ package com.zundrel.logisticalautomation.common.blocks.decor;
 import java.util.List;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
+import com.zundrel.logisticalautomation.api.IWrenchable;
+import com.zundrel.logisticalautomation.api.QuadBoolean;
+import com.zundrel.logisticalautomation.api.QuadBooleanDirs;
+import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityCatwalk;
+import javafx.beans.property.Property;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,7 +35,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.zundrel.logisticalautomation.common.blocks.BlockBasic;
 import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs;
 
-public class BlockCatwalk extends BlockBasic {
+public class BlockCatwalk extends BlockBasic implements IWrenchable {
 	public static final PropertyBool NORTH = PropertyBool.create("north");
 	public static final PropertyBool EAST = PropertyBool.create("east");
 	public static final PropertyBool SOUTH = PropertyBool.create("south");
@@ -32,7 +44,7 @@ public class BlockCatwalk extends BlockBasic {
 	public BlockCatwalk(String unlocalizedName, Material material) {
 		super(unlocalizedName, material, LogisticCreativeTabs.LogisticConveyorTab.INSTANCE);
 
-		setDefaultState(this.getDefaultState().withProperty(NORTH, true).withProperty(EAST, true).withProperty(SOUTH, true).withProperty(WEST, true));
+		setDefaultState(this.getDefaultState().withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
 	}
 
 	@Override
@@ -42,13 +54,29 @@ public class BlockCatwalk extends BlockBasic {
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return 0;
+		boolean one = state.getValue(NORTH);
+		boolean two = state.getValue(SOUTH);
+		boolean three = state.getValue(WEST);
+		boolean four = state.getValue(EAST);
+
+		System.out.println(QuadBooleanDirs.findQuadMeta(one, two, three, four));
+
+		return QuadBooleanDirs.findQuadMeta(one, two, three, four);
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		IBlockState state = this.getDefaultState();
+		QuadBoolean quadBoolean = QuadBooleanDirs.get(meta);
+
+		System.out.println(quadBoolean);
+
+		IBlockState state = this.getDefaultState().withProperty(NORTH, quadBoolean.getOne()).withProperty(SOUTH, quadBoolean.getTwo()).withProperty(WEST, quadBoolean.getThree()).withProperty(EAST, quadBoolean.getFour());
 		return state;
+	}
+
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+		return this.getDefaultState();
 	}
 
 	public boolean isAdjacentBlockOfMyType(IBlockAccess world, BlockPos position, EnumFacing facing) {
@@ -64,29 +92,113 @@ public class BlockCatwalk extends BlockBasic {
 		return this == block;
 	}
 
+//	@Override
+//	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos position) {
+//		boolean north;
+//		boolean south;
+//		boolean west;
+//		boolean east;
+//
+//		for (EnumFacing facing : EnumFacing.HORIZONTALS) {
+//			IBlockState offset = world.getBlockState(position.offset(facing));
+//			IBlockState offset_down = world.getBlockState(position.offset(facing).down());
+//
+//			boolean value;
+//
+//			if (offset.getBlock() instanceof BlockCatwalk) {
+//				value = isAdjacentBlockOfMyType(world, position, facing);
+//			} else if (offset.getBlock() instanceof BlockCatwalkStairs && offset.getValue(BlockHorizontal.FACING) == facing) {
+//				value = true;
+//			} else if (offset_down.getBlock() instanceof BlockCatwalkStairs && offset_down.getValue(BlockHorizontal.FACING) == facing) {
+//				value = true;
+//			}
+//
+//			switch(facing) {
+//				case NORTH:
+//					north = value;
+//				case SOUTH:
+//					south = value;
+//				case WEST:
+//					west = value;
+//				case EAST:
+//					east = value;
+//			}
+//		}
+//
+//		IBlockState finalState = state.withProperty(NORTH, north).withProperty(SOUTH, catwalk.getSouth()).withProperty(WEST, catwalk.getWest()).withProperty(EAST, catwalk.getEast());
+//
+//		return finalState;
+//	}
+
+
 	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos position) {
-		IBlockState newState = state;
+	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
 
-		newState = state.withProperty(EAST, this.isAdjacentBlockOfMyType(world, position, EnumFacing.EAST)).withProperty(NORTH, this.isAdjacentBlockOfMyType(world, position, EnumFacing.NORTH)).withProperty(SOUTH, this.isAdjacentBlockOfMyType(world, position, EnumFacing.SOUTH)).withProperty(WEST, this.isAdjacentBlockOfMyType(world, position, EnumFacing.WEST));
+	}
 
-		if (world.getBlockState(position.offset(EnumFacing.NORTH).down()).getBlock() instanceof BlockCatwalkStairs) {
-			newState = newState.withProperty(NORTH, true);
+	@Override
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
+		IBlockState neighborState = world.getBlockState(fromPos);
+
+		BlockPos dirVec = pos.subtract(fromPos);
+
+		PropertyBool bool = null;
+		PropertyBool boolOpposite = null;
+		EnumFacing facing = EnumFacing.getFacingFromVector(dirVec.getX(), dirVec.getY(), dirVec.getZ());
+
+		if (facing == EnumFacing.NORTH) {
+			bool = NORTH;
+			boolOpposite = SOUTH;
+		} else if (facing == EnumFacing.SOUTH) {
+			bool = SOUTH;
+			boolOpposite = NORTH;
+		} else if (facing == EnumFacing.WEST) {
+			bool = WEST;
+			boolOpposite = EAST;
+		} else if (facing == EnumFacing.EAST) {
+			bool = EAST;
+			boolOpposite = WEST;
 		}
 
-		if (world.getBlockState(position.offset(EnumFacing.EAST).down()).getBlock() instanceof BlockCatwalkStairs) {
-			newState = newState.withProperty(EAST, true);
+		if (neighborState.getBlock() == this) {
+			world.setBlockState(pos, state.withProperty(boolOpposite, true));
+			world.setBlockState(fromPos, neighborState.withProperty(bool, true));
+		}
+	}
+
+	@Override
+	public void onWrenched(World world, BlockPos pos, EntityPlayer player, EnumFacing facing) {
+		IBlockState state = world.getBlockState(pos);
+		PropertyBool bool = null;
+		PropertyBool boolplayer = null;
+
+		System.out.println(facing);
+
+		if (facing == EnumFacing.NORTH) {
+			bool = NORTH;
+		} else if (facing == EnumFacing.SOUTH) {
+			bool = SOUTH;
+		} else if (facing == EnumFacing.WEST) {
+			bool = WEST;
+		} else if (facing == EnumFacing.EAST) {
+			bool = EAST;
 		}
 
-		if (world.getBlockState(position.offset(EnumFacing.SOUTH).down()).getBlock() instanceof BlockCatwalkStairs) {
-			newState = newState.withProperty(SOUTH, true);
+		if (player.getHorizontalFacing() == EnumFacing.NORTH) {
+			boolplayer = NORTH;
+		} else if (player.getHorizontalFacing() == EnumFacing.SOUTH) {
+			boolplayer = SOUTH;
+		} else if (player.getHorizontalFacing() == EnumFacing.WEST) {
+			boolplayer = WEST;
+		} else if (player.getHorizontalFacing() == EnumFacing.EAST) {
+			boolplayer = EAST;
 		}
 
-		if (world.getBlockState(position.offset(EnumFacing.WEST).down()).getBlock() instanceof BlockCatwalkStairs) {
-			newState = newState.withProperty(WEST, true);
+		if (facing != EnumFacing.UP && facing != EnumFacing.DOWN) {
+			world.setBlockState(pos, state.withProperty(bool, !state.getValue(bool)));
+		} else {
+			world.setBlockState(pos, state.withProperty(boolplayer, !state.getValue(boolplayer)));
 		}
-
-		return newState;
 	}
 
 	@Override
@@ -121,20 +233,20 @@ public class BlockCatwalk extends BlockBasic {
 
 		addCollisionBox(bottom, pos, collidingBoxes, entityBox);
 
-		if (!this.isAdjacentBlockOfMyType(worldIn, pos, EnumFacing.NORTH) && !(worldIn.getBlockState(pos.offset(EnumFacing.NORTH).down()).getBlock() instanceof BlockCatwalkStairs)) {
+		if (!state.getValue(NORTH)) {
 			addCollisionBox(side1, pos, collidingBoxes, entityBox);
 		}
 
-		if (!this.isAdjacentBlockOfMyType(worldIn, pos, EnumFacing.EAST) && !(worldIn.getBlockState(pos.offset(EnumFacing.EAST).down()).getBlock() instanceof BlockCatwalkStairs)) {
-			addCollisionBox(side2, pos, collidingBoxes, entityBox);
-		}
-
-		if (!this.isAdjacentBlockOfMyType(worldIn, pos, EnumFacing.SOUTH) && !(worldIn.getBlockState(pos.offset(EnumFacing.SOUTH).down()).getBlock() instanceof BlockCatwalkStairs)) {
+		if (!state.getValue(SOUTH)) {
 			addCollisionBox(side3, pos, collidingBoxes, entityBox);
 		}
 
-		if (!this.isAdjacentBlockOfMyType(worldIn, pos, EnumFacing.WEST) && !(worldIn.getBlockState(pos.offset(EnumFacing.WEST).down()).getBlock() instanceof BlockCatwalkStairs)) {
+		if (!state.getValue(WEST)) {
 			addCollisionBox(side4, pos, collidingBoxes, entityBox);
+		}
+
+		if (!state.getValue(EAST)) {
+			addCollisionBox(side2, pos, collidingBoxes, entityBox);
 		}
 	}
 }

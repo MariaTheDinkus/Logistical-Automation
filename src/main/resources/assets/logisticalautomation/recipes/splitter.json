@@ -3,28 +3,19 @@
     "item": "logisticalautomation:splitter",
     "count": 1
   },
-  "pattern": [
-    "III",
-	"BMB",
-    "IPI"
-  ],
-  "type": "minecraft:crafting_shaped",
-  "key": {
-    "P": {
-      "item": "minecraft:piston",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_bars",
       "data": 0
     },
-	"M": {
-		"item": "logisticalautomation:iron_motor_set",
+	{
+		"item": "logisticalautomation:alternator",
 		"data": 0
 	},
-	"B": {
-		"item": "logisticalautomation:iron_stick",
-		"data": 0
-	},
-	"I": {
-		"item": "minecraft:iron_ingot",
+	{
+		"item": "logisticalautomation:gold_motor_set",
 		"data": 0
 	}
-  }
+  ]
 }

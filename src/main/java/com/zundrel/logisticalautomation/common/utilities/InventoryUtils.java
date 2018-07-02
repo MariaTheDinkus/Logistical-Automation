@@ -1,5 +1,7 @@
 package com.zundrel.logisticalautomation.common.utilities;
 
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -34,5 +36,45 @@ public class InventoryUtils {
 			return ItemHandlerHelper.insertItem(handler, stack.copy(), simulate);
 		}
 		return stack;
+	}
+
+	public static void extractStackFromInventory(TileEntity tileInventory, EnumFacing facing) {
+		if(!tileInventory.getWorld().isRemote && tileInventory.getWorld().getTotalWorldTime() % 5 == 0)
+		{
+			System.out.println("HAI");
+			TileEntity tile2 = tileInventory.getWorld().getTileEntity(tileInventory.getPos().add(facing.getOpposite().getDirectionVec()));
+			if(tile2 != null && tile2 instanceof IInventory)
+			{
+				IInventory inventory = (IInventory) tile2;
+				boolean empty = true;
+				for (int i = 0; i < inventory.getSizeInventory(); i++) {
+					if (inventory.getStackInSlot(i) != ItemStack.EMPTY) {
+						empty = false;
+						break;
+					}
+				}
+				if(!empty)
+				{
+					for(int i = 0; i < inventory.getSizeInventory(); i++)
+					{
+						if(inventory.getStackInSlot(i) != ItemStack.EMPTY)
+						{
+							EntityItem entityItem = new EntityItem(tileInventory.getWorld(), tileInventory.getPos().getX() + 0.5F, tileInventory.getPos().getY() + (1F / 16F), tileInventory.getPos().getZ() + 0.5F, new ItemStack(
+									inventory.getStackInSlot(i).getItem(), 1, inventory.getStackInSlot(i).getMetadata()));
+							if(entityItem.getItem() != ItemStack.EMPTY)
+							{
+								tileInventory.getWorld().spawnEntity(entityItem);
+							}
+							entityItem.motionX = 0;
+							entityItem.motionY = 0;
+							entityItem.motionZ = 0;
+							entityItem.setPosition(tileInventory.getPos().getX() + 0.5F, tileInventory.getPos().getY() + (1F / 16F), tileInventory.getPos().getZ() + 0.5F);
+							inventory.decrStackSize(i, 1);
+							break;
+						}
+					}
+				}
+			}
+		}
 	}
 }

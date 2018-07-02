@@ -3,15 +3,11 @@ package com.zundrel.logisticalautomation.common.blocks.decor;
 import java.util.List;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import com.zundrel.logisticalautomation.api.IWrenchable;
 import com.zundrel.logisticalautomation.api.QuadBoolean;
 import com.zundrel.logisticalautomation.api.QuadBooleanDirs;
-import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityCatwalk;
-import javafx.beans.property.Property;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -20,13 +16,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -161,8 +155,13 @@ public class BlockCatwalk extends BlockBasic implements IWrenchable {
 		}
 
 		if (neighborState.getBlock() == this) {
-			world.setBlockState(pos, state.withProperty(boolOpposite, true));
-			world.setBlockState(fromPos, neighborState.withProperty(bool, true));
+			if (boolOpposite != null) {
+				world.setBlockState(pos, state.withProperty(boolOpposite, true));
+			}
+
+			if (bool != null) {
+				world.setBlockState(fromPos, neighborState.withProperty(bool, true));
+			}
 		}
 	}
 

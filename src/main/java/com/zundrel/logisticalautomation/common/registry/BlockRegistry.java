@@ -32,6 +32,7 @@ public class BlockRegistry {
 	public static Block alternator;
 	public static Block junction;
 	public static Block splitter;
+	public static Block extractor;
 
 	public static Block blowtorch;
 	public static Block poly_blowtorch;
@@ -62,6 +63,7 @@ public class BlockRegistry {
 		register(alternator = new BlockAlternator("alternator", Material.ROCK));
 		register(junction = new BlockJunction("junction", Material.ROCK));
 		register(splitter = new BlockSplitter("splitter", Material.ROCK));
+		register(extractor = new BlockExtractor("extractor", Material.ROCK));
 
 		register(blowtorch = new BlockBlowtorch("blowtorch", Material.ROCK));
 		register(poly_blowtorch = new BlockPolyBlowtorch("poly_blowtorch", Material.ROCK));

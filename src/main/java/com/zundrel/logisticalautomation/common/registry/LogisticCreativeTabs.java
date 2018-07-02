@@ -76,6 +76,7 @@ public class LogisticCreativeTabs {
 			this.addBlock(BlockRegistry.alternator);
 			this.addBlock(BlockRegistry.junction);
 			this.addBlock(BlockRegistry.splitter);
+			this.addBlock(BlockRegistry.extractor);
 
 			this.addBlock(BlockRegistry.blowtorch);
 			this.addBlock(BlockRegistry.poly_blowtorch);

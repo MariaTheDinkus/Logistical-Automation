@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.BlockPos;
@@ -67,11 +68,22 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 			if (contact && inventoryTile != null) {
 				ItemStack stack = entity.getItem();
 				if (!stack.isEmpty()) {
-					ItemStack ret = InventoryUtils.insertStackIntoInventory(inventoryTile, stack, facing.getOpposite());
-					if (ret.isEmpty()) {
-						entity.setDead();
-					} else if (ret.getCount() < stack.getCount()) {
-						entity.setItem(ret);
+					if (inventoryTile instanceof TileEntityFurnace) {
+						if (TileEntityFurnace.isItemFuel(stack)) {
+							ItemStack ret = InventoryUtils.insertStackIntoInventory(inventoryTile, stack, facing.getOpposite());
+							if (ret.isEmpty()) {
+								entity.setDead();
+							} else if (ret.getCount() < stack.getCount()) {
+								entity.setItem(ret);
+							}
+						} else {
+							ItemStack ret = InventoryUtils.insertStackIntoInventory(inventoryTile, stack, EnumFacing.UP);
+							if (ret.isEmpty()) {
+								entity.setDead();
+							} else if (ret.getCount() < stack.getCount()) {
+								entity.setItem(ret);
+							}
+						}
 					}
 				}
 			}

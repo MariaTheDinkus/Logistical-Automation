@@ -115,6 +115,7 @@ public class TileEntityFilter extends TileEntity {
 		northFilter.deserializeNBT(nbt.getCompoundTag("n"));
 		westFilter.deserializeNBT(nbt.getCompoundTag("w"));
 		eastFilter.deserializeNBT(nbt.getCompoundTag("e"));
+		markDirty();
 	}
 
 	@Override

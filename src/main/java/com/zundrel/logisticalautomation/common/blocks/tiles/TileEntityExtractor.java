@@ -90,6 +90,7 @@ public class TileEntityExtractor extends TileEntity implements ITickable {
 
 	public void handleMessage(NBTTagCompound nbt) {
 		filter.deserializeNBT(nbt.getCompoundTag("f"));
+		markDirty();
 	}
 
 	@Override

@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "logisticalautomation:conveyor_stone",
+    "count": 2
+  },
+  "pattern": [
+    "PPP",
+	"SSS"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:stone_slab",
+      "data": 0
+    },
+	"P": {
+		"item": "minecraft:stone_pressure_plate",
+		"data": 0
+	}
+  }
+}

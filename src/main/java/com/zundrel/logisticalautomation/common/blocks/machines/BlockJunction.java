@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.zundrel.logisticalautomation.common.utilities.InventoryUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -14,6 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
@@ -76,19 +78,24 @@ public class BlockJunction extends BlockFacing implements IWrenchable, IShowHopp
 		return RotationUtilities.getRotatedAABB(new AxisAlignedBB(0, 0, 0.01F, 1, 1, 1), blockState.getValue(FACING).getOpposite());
 	}
 
-	private void sortItemStack(ItemStack stack, World world, BlockPos pos, EnumFacing facing, boolean right) {
+	public void sortItemStack(ItemStack stack, World world, BlockPos pos, EnumFacing facing, boolean right) {
 		EnumFacing facingSorted = right ? facing.rotateY() : facing.rotateYCCW();
+		TileEntity tile = world.getTileEntity(pos.offset(facingSorted));
 
-		Vec3d posSpawn = new Vec3d(pos.offset(facingSorted).getX() + 0.5D - facingSorted.getFrontOffsetX() * .35, pos.offset(facingSorted).getY() + 0.4D, pos.offset(facingSorted).getZ() + 0.5D - facingSorted.getFrontOffsetZ() * .35);
-		Vec3d velocity = new Vec3d(0.03D * facingSorted.getFrontOffsetX(), 0.1D, 0.03D * facingSorted.getFrontOffsetZ());
+		if (InventoryUtils.canInsertStackIntoInventory(tile, stack, facing.getOpposite())) {
+			InventoryUtils.insertStackIntoInventory(tile, stack, facing.getOpposite());
+		} else {
+			Vec3d posSpawn = new Vec3d(pos.offset(facingSorted).getX() + 0.5D - facingSorted.getFrontOffsetX() * .35, pos.offset(facingSorted).getY() + 0.4D, pos.offset(facingSorted).getZ() + 0.5D - facingSorted.getFrontOffsetZ() * .35);
+			Vec3d velocity = new Vec3d(0.03D * facingSorted.getFrontOffsetX(), 0.1D, 0.03D * facingSorted.getFrontOffsetZ());
 
-		EntityItem entityItem = new EntityItem(world, posSpawn.x, (posSpawn.y - 0.5F) + (2.65F / 16F), posSpawn.z, stack);
-		entityItem.isAirBorne = true;
-		entityItem.motionX = velocity.x;
-		entityItem.motionY = velocity.y;
-		entityItem.motionZ = velocity.z;
+			EntityItem entityItem = new EntityItem(world, posSpawn.x, (posSpawn.y - 0.5F) + (2.65F / 16F), posSpawn.z, stack);
+			entityItem.isAirBorne = true;
+			entityItem.motionX = velocity.x;
+			entityItem.motionY = velocity.y;
+			entityItem.motionZ = velocity.z;
 
-		world.spawnEntity(entityItem);
+			world.spawnEntity(entityItem);
+		}
 	}
 
 	@Override

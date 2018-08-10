@@ -6,6 +6,7 @@ import amerifrance.guideapi.api.util.PageHelper;
 import amerifrance.guideapi.api.util.TextHelper;
 import amerifrance.guideapi.entry.EntryItemStack;
 import amerifrance.guideapi.page.PageText;
+import com.zundrel.logisticalautomation.LogisticalAutomation;
 import com.zundrel.logisticalautomation.common.info.ModInfo;
 import com.zundrel.logisticalautomation.common.registry.BlockRegistry;
 import com.zundrel.logisticalautomation.common.registry.ItemRegistry;
@@ -33,25 +34,25 @@ public class CategoryDecor {
 
         catwalkPages.addAll(PageHelper.pagesForLongText(TextHelper.localize(keyBase + "catwalks" + ".info"), 370));
 
-        catwalkPages.add(BookUtils.getPageForRecipe(new ItemStack(BlockRegistry.catwalk)));
+        catwalkPages.add(BookUtils.getPageForRecipe(new ItemStack(LogisticalAutomation.Blocks.catwalk)));
 
-        entries.put(new ResourceLocation(keyBase + "catwalks"), new EntryItemStack(catwalkPages, TextHelper.localize(keyBase + "catwalks"), new ItemStack(BlockRegistry.catwalk), true));
+        entries.put(new ResourceLocation(keyBase + "catwalks"), new EntryItemStack(catwalkPages, TextHelper.localize(keyBase + "catwalks"), new ItemStack(LogisticalAutomation.Blocks.catwalk), true));
         
         List<IPage> stairPages = new ArrayList<>();
 
         stairPages.addAll(PageHelper.pagesForLongText(TextHelper.localize(keyBase + "catwalk_stairs" + ".info"), 370));
 
-        stairPages.add(BookUtils.getPageForRecipe(new ItemStack(BlockRegistry.catwalk_stairs)));
+        stairPages.add(BookUtils.getPageForRecipe(new ItemStack(LogisticalAutomation.Blocks.catwalk_stairs)));
 
-        entries.put(new ResourceLocation(keyBase + "catwalk_stairs"), new EntryItemStack(stairPages, TextHelper.localize(keyBase + "catwalk_stairs"), new ItemStack(BlockRegistry.catwalk_stairs), true));
+        entries.put(new ResourceLocation(keyBase + "catwalk_stairs"), new EntryItemStack(stairPages, TextHelper.localize(keyBase + "catwalk_stairs"), new ItemStack(LogisticalAutomation.Blocks.catwalk_stairs), true));
 
         List<IPage> pillarPages = new ArrayList<>();
 
         pillarPages.addAll(PageHelper.pagesForLongText(TextHelper.localize(keyBase + "catwalk_pillars" + ".info"), 370));
 
-        pillarPages.add(BookUtils.getPageForRecipe(new ItemStack(BlockRegistry.catwalk_pillar)));
+        pillarPages.add(BookUtils.getPageForRecipe(new ItemStack(LogisticalAutomation.Blocks.catwalk_pillar)));
 
-        entries.put(new ResourceLocation(keyBase + "catwalk_pillars"), new EntryItemStack(pillarPages, TextHelper.localize(keyBase + "catwalk_pillars"), new ItemStack(BlockRegistry.catwalk_pillar), true));
+        entries.put(new ResourceLocation(keyBase + "catwalk_pillars"), new EntryItemStack(pillarPages, TextHelper.localize(keyBase + "catwalk_pillars"), new ItemStack(LogisticalAutomation.Blocks.catwalk_pillar), true));
 
         for (Entry<ResourceLocation, EntryAbstract> entry : entries.entrySet()) {
             for (IPage page : entry.getValue().pageList) {

@@ -24,8 +24,8 @@ public class GuiFilter extends GuiContainer {
 
 	public GuiFilter(ContainerFilter inventorySlotsIn) {
 		super(inventorySlotsIn);
-		ySize = 196;
 		xSize = 176;
+		ySize = 196;
 		tile = ((ContainerFilter) inventorySlots).tile;
 	}
 
@@ -40,13 +40,13 @@ public class GuiFilter extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		if (showConfig) {
-			this.mc.getTextureManager().bindTexture(new ResourceLocation(ModInfo.MOD_ID, "textures/gui/filter_gui_cutout.png"));
+			this.mc.getTextureManager().bindTexture(new ResourceLocation(ModInfo.MOD_ID, "textures/gui/filter_cutout.png"));
 		} else {
-			this.mc.getTextureManager().bindTexture(new ResourceLocation(ModInfo.MOD_ID, "textures/gui/filter_gui.png"));
+			this.mc.getTextureManager().bindTexture(new ResourceLocation(ModInfo.MOD_ID, "textures/gui/filter.png"));
 		}
 		this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		if (showConfig) {
-			this.mc.getTextureManager().bindTexture(new ResourceLocation(ModInfo.MOD_ID, "textures/gui/filter_gui_settings.png"));
+			this.mc.getTextureManager().bindTexture(new ResourceLocation(ModInfo.MOD_ID, "textures/gui/filter_settings.png"));
 			this.drawTexturedModalRect(guiLeft - 167, guiTop, 0, 0, 168, 100);
 		}
 	}
@@ -143,6 +143,7 @@ public class GuiFilter extends GuiContainer {
 		nbt.setTag("n", tile.getNorthFilter().serializeNBT());
 		nbt.setTag("w", tile.getWestFilter().serializeNBT());
 		nbt.setTag("e", tile.getEastFilter().serializeNBT());
+		tile.handleMessage(nbt);
 		LogisticalAutomation.networkWrapper.sendToServer(new MessageButton(nbt));
 	}
 

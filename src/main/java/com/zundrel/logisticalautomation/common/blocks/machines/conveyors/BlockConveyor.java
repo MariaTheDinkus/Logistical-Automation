@@ -84,6 +84,13 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 								entity.setItem(ret);
 							}
 						}
+					} else {
+						ItemStack ret = InventoryUtils.insertStackIntoInventory(inventoryTile, stack, facing);
+						if (ret.isEmpty()) {
+							entity.setDead();
+						} else if (ret.getCount() < stack.getCount()) {
+							entity.setItem(ret);
+						}
 					}
 				}
 			}

@@ -1,5 +1,6 @@
 package com.zundrel.logisticalautomation.common.blocks.tiles;
 
+import com.sun.javafx.geom.Vec3f;
 import com.zundrel.logisticalautomation.common.blocks.machines.BlockBlowtorch;
 import com.zundrel.logisticalautomation.common.utilities.Filter;
 import net.minecraft.block.BlockHorizontal;
@@ -18,6 +19,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -31,11 +33,13 @@ public class TileEntityBlowtorch extends TileEntity implements ITickable {
 	@Override
 	public void update() {
 	    IBlockState blowtorch = getWorld().getBlockState(getPos());
-        AxisAlignedBB range = new AxisAlignedBB(0, 0, 0, 1, 1,1).offset(getPos().offset(blowtorch.getValue(BlockBlowtorch.FACING)));
-		List entities = getWorld().getEntitiesWithinAABB(EntityLivingBase.class, range);
 
-        if (getWorld().getTotalWorldTime() % 40 == 0) {
-            if (blowtorch.getValue(BlockBlowtorch.POWERED)) {
+        if (blowtorch.getValue(BlockBlowtorch.POWERED)) {
+            if (getWorld().getTotalWorldTime() % 40 == 0) {
+                BlockPos pos = new BlockPos(0, 0, 1).offset(blowtorch.getValue(BlockBlowtorch.FACING));
+                AxisAlignedBB range = new AxisAlignedBB(pos.getX(), pos.getX(), pos.getX(), pos.getZ(), pos.getZ(), pos.getZ());
+                List entities = getWorld().getEntitiesWithinAABB(EntityLivingBase.class, range);
+
                 BlockPos flameDir = new BlockPos(0, 0, 0).offset(blowtorch.getValue(BlockBlowtorch.FACING));
 
                 int particleAmount = 14;

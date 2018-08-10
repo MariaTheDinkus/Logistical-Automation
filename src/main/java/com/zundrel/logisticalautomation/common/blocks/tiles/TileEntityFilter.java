@@ -2,6 +2,7 @@ package com.zundrel.logisticalautomation.common.blocks.tiles;
 
 import javax.annotation.Nonnull;
 
+import com.zundrel.logisticalautomation.common.utilities.InventoryUtils;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -71,17 +72,22 @@ public class TileEntityFilter extends TileEntity {
 		}
 
 		EnumFacing facingSorted = getSideForItem(stack);
+		TileEntity tile = world.getTileEntity(pos.offset(facingSorted));
 
-		Vec3d posSpawn = new Vec3d(pos.offset(facingSorted).getX() + 0.5D - facingSorted.getFrontOffsetX() * .35, pos.offset(facingSorted).getY() + 0.4D, pos.offset(facingSorted).getZ() + 0.5D - facingSorted.getFrontOffsetZ() * .35);
-		Vec3d velocity = new Vec3d(0.03D * facingSorted.getFrontOffsetX(), 0.1D, 0.03D * facingSorted.getFrontOffsetZ());
+		if (InventoryUtils.canInsertStackIntoInventory(tile, stack, facingSorted.getOpposite())) {
+			InventoryUtils.insertStackIntoInventory(tile, stack, facingSorted.getOpposite());
+		} else {
+			Vec3d posSpawn = new Vec3d(pos.offset(facingSorted).getX() + 0.5D - facingSorted.getFrontOffsetX() * .35, pos.offset(facingSorted).getY() + 0.4D, pos.offset(facingSorted).getZ() + 0.5D - facingSorted.getFrontOffsetZ() * .35);
+			Vec3d velocity = new Vec3d(0.03D * facingSorted.getFrontOffsetX(), 0.1D, 0.03D * facingSorted.getFrontOffsetZ());
 
-		EntityItem entityItem = new EntityItem(world, posSpawn.x, (posSpawn.y - 0.5F) + (2.65F / 16F), posSpawn.z, stack);
-		entityItem.isAirBorne = true;
-		entityItem.motionX = velocity.x;
-		entityItem.motionY = velocity.y;
-		entityItem.motionZ = velocity.z;
+			EntityItem entityItem = new EntityItem(world, posSpawn.x, (posSpawn.y - 0.5F) + (2.65F / 16F), posSpawn.z, stack);
+			entityItem.isAirBorne = true;
+			entityItem.motionX = velocity.x;
+			entityItem.motionY = velocity.y;
+			entityItem.motionZ = velocity.z;
 
-		world.spawnEntity(entityItem);
+			world.spawnEntity(entityItem);
+		}
 	}
 
 	private EnumFacing getSideForItem(ItemStack stack) {

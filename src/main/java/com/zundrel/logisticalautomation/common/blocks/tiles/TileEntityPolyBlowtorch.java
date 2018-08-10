@@ -19,11 +19,12 @@ public class TileEntityPolyBlowtorch extends TileEntity implements ITickable {
 	@Override
 	public void update() {
 	    IBlockState blowtorch = getWorld().getBlockState(getPos());
-        AxisAlignedBB range = new AxisAlignedBB(-1, 0, -1, 2, 1,2).offset(getPos());
-		List entities = getWorld().getEntitiesWithinAABB(EntityLivingBase.class, range);
 
-        if (getWorld().getTotalWorldTime() % 40 == 0) {
-            if (blowtorch.getValue(BlockBlowtorch.POWERED)) {
+        if (blowtorch.getValue(BlockBlowtorch.POWERED)) {
+            if (getWorld().getTotalWorldTime() % 40 == 0) {
+                AxisAlignedBB range = new AxisAlignedBB(-1, 0, -1, 2, 1,2).offset(getPos());
+                List entities = getWorld().getEntitiesWithinAABB(EntityLivingBase.class, range);
+
                 int particleAmount = 14;
 
                 for (int i = 0; i < particleAmount; i++) {

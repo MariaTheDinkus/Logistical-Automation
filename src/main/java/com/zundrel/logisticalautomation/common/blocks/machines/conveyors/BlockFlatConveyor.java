@@ -2,6 +2,7 @@ package com.zundrel.logisticalautomation.common.blocks.machines.conveyors;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -35,7 +36,13 @@ public class BlockFlatConveyor extends BlockConveyor {
 			return;
 		}
 
-		MovementUtilities.pushEntity(entityIn, pos, tier.getSpeed(), state.getValue(FACING));
+		if (tier == EnumConveyorTier.STONE) {
+			MovementUtilities.pushEntity(entityIn, pos, tier.getSpeed(), state.getValue(FACING), false);
+		} else {
+			MovementUtilities.pushEntity(entityIn, pos, tier.getSpeed(), state.getValue(FACING));
+			insert(worldIn, pos, facing, entityIn);
+		}
+
 		if (entityIn instanceof EntityItem || entityIn instanceof EntityXPOrb) {
 			Block block = worldIn.getBlockState(pos.add(state.getValue(FACING).getDirectionVec())).getBlock();
 
@@ -45,8 +52,6 @@ public class BlockFlatConveyor extends BlockConveyor {
 				}
 			}
 		}
-
-		insert(worldIn, pos, facing, entityIn);
 	}
 
 	@Override
@@ -85,7 +90,13 @@ public class BlockFlatConveyor extends BlockConveyor {
 		Block invBlock = invState.getBlock();
 		TileEntity inventoryTile = worldIn.getTileEntity(invPos);
 
-		if (inventoryTile != null && inventoryTile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing.getOpposite())) {
+		if (tier == EnumConveyorTier.STONE) {
+			if (invBlock instanceof IShowHopper && ((IShowHopper) invBlock).showConveyorHopper() && ((IShowHopper) invBlock).compareFacing() && invState.getValue(BlockHorizontal.FACING) == facing || invBlock instanceof IShowHopper && ((IShowHopper) invBlock).showConveyorHopper() && !((IShowHopper) invBlock).compareFacing()) {
+				addon = true;
+			} else {
+				addon = false;
+			}
+	    } else if (inventoryTile != null && inventoryTile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing.getOpposite())) {
 			addon = true;
 		} else if (invBlock instanceof IShowHopper && ((IShowHopper) invBlock).showConveyorHopper() && ((IShowHopper) invBlock).compareFacing() && invState.getValue(BlockHorizontal.FACING) == facing || invBlock instanceof IShowHopper && ((IShowHopper) invBlock).showConveyorHopper() && !((IShowHopper) invBlock).compareFacing()) {
 			addon = true;

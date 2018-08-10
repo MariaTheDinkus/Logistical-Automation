@@ -1,10 +1,15 @@
 package com.zundrel.logisticalautomation.common.utilities;
 
+import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityExtractor;
+import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityFilter;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -38,43 +43,29 @@ public class InventoryUtils {
 		return stack;
 	}
 
-	public static void extractStackFromInventory(TileEntity tileInventory, EnumFacing facing) {
-		if(!tileInventory.getWorld().isRemote && tileInventory.getWorld().getTotalWorldTime() % 5 == 0)
-		{
-			System.out.println("HAI");
-			TileEntity tile2 = tileInventory.getWorld().getTileEntity(tileInventory.getPos().add(facing.getOpposite().getDirectionVec()));
-			if(tile2 != null && tile2 instanceof IInventory)
-			{
-				IInventory inventory = (IInventory) tile2;
-				boolean empty = true;
-				for (int i = 0; i < inventory.getSizeInventory(); i++) {
-					if (inventory.getStackInSlot(i) != ItemStack.EMPTY) {
-						empty = false;
-						break;
-					}
+	public static ItemStack extractStackFromInventory(World world, BlockPos pos, EnumFacing facing, boolean empty) {
+		BlockPos extractPos = pos.offset(facing.getOpposite());
+		TileEntity invTile = world.getTileEntity(extractPos);
+
+		if (invTile != null && invTile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing)) {
+			IItemHandler inv = invTile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing);
+
+			TileEntityExtractor tile = (TileEntityExtractor) world.getTileEntity((pos));
+			ItemStack stack = ItemStack.EMPTY;
+
+			for (int i = 0; i < inv.getSlots(); i++) {
+				if (empty == true || tile.filterContainsItem(inv.extractItem(i, 1, true))) {
+					stack = inv.extractItem(i, 1, false);
 				}
-				if(!empty)
-				{
-					for(int i = 0; i < inventory.getSizeInventory(); i++)
-					{
-						if(inventory.getStackInSlot(i) != ItemStack.EMPTY)
-						{
-							EntityItem entityItem = new EntityItem(tileInventory.getWorld(), tileInventory.getPos().getX() + 0.5F, tileInventory.getPos().getY() + (1F / 16F), tileInventory.getPos().getZ() + 0.5F, new ItemStack(
-									inventory.getStackInSlot(i).getItem(), 1, inventory.getStackInSlot(i).getMetadata()));
-							if(entityItem.getItem() != ItemStack.EMPTY)
-							{
-								tileInventory.getWorld().spawnEntity(entityItem);
-							}
-							entityItem.motionX = 0;
-							entityItem.motionY = 0;
-							entityItem.motionZ = 0;
-							entityItem.setPosition(tileInventory.getPos().getX() + 0.5F, tileInventory.getPos().getY() + (1F / 16F), tileInventory.getPos().getZ() + 0.5F);
-							inventory.decrStackSize(i, 1);
-							break;
-						}
-					}
+
+				if (!stack.isEmpty()) {
+					break;
 				}
 			}
+
+			return stack;
 		}
+
+		return ItemStack.EMPTY;
 	}
 }

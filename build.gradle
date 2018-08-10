@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.0.0"
+version = "0.1.0"
 group = "com.zundrel.logisticalautomation" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "LogisticalAutomation"
 
@@ -28,10 +28,12 @@ minecraft {
 
 repositories {
   maven { url 'http://tehnut.info/maven/' }
+  maven { url "http://maven.amadornes.com/" }
 }
 
 dependencies {
   deobfCompile "info.amerifrance.guideapi:Guide-API:1.12-2.1.4-57"
+  deobfCompile "MCMultiPart2:MCMultiPart:2.5.1"
 }
 
 processResources {

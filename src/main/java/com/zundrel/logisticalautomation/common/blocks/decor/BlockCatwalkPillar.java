@@ -66,10 +66,10 @@ public class BlockCatwalkPillar extends BlockBasic {
 	private boolean[] getConnections(IBlockAccess world, BlockPos pos) {
 		boolean[] res = new boolean[4];
 
-		boolean frameXPos = world.getBlockState(pos.east()).getBlock() == BlockRegistry.catwalk_pillar;
-		boolean frameXNeg = world.getBlockState(pos.west()).getBlock() == BlockRegistry.catwalk_pillar;
-		boolean frameZPos = world.getBlockState(pos.south()).getBlock() == BlockRegistry.catwalk_pillar;
-		boolean frameZNeg = world.getBlockState(pos.north()).getBlock() == BlockRegistry.catwalk_pillar;
+		boolean frameXPos = world.getBlockState(pos.east()).getBlock() == LogisticalAutomation.Blocks.catwalk_pillar;
+		boolean frameXNeg = world.getBlockState(pos.west()).getBlock() == LogisticalAutomation.Blocks.catwalk_pillar;
+		boolean frameZPos = world.getBlockState(pos.south()).getBlock() == LogisticalAutomation.Blocks.catwalk_pillar;
+		boolean frameZNeg = world.getBlockState(pos.north()).getBlock() == LogisticalAutomation.Blocks.catwalk_pillar;
 
 		res[Corner.SE.ordinal()]  = frameXPos || frameZPos;
 		res[Corner.NE.ordinal()]  = frameXPos || frameZNeg;

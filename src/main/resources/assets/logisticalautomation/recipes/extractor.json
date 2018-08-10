@@ -1,0 +1,30 @@
+{
+  "result": {
+    "item": "logisticalautomation:extractor",
+    "count": 1
+  },
+  "pattern": [
+    "IBI",
+	"IMI",
+    "ICI"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:chest",
+      "data": 0
+    },
+	"M": {
+		"item": "logisticalautomation:iron_motor_set",
+		"data": 0
+	},
+	"B": {
+		"item": "logisticalautomation:iron_stick",
+		"data": 0
+	},
+	"I": {
+		"item": "minecraft:iron_ingot",
+		"data": 0
+	}
+  }
+}

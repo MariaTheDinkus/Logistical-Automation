@@ -3,6 +3,7 @@ package com.zundrel.logisticalautomation.common.registry;
 import javax.annotation.Nonnull;
 
 import amerifrance.guideapi.api.GuideAPI;
+import com.zundrel.logisticalautomation.LogisticalAutomation;
 import com.zundrel.logisticalautomation.compat.guide.GuideLogisticalAutomation;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -55,7 +56,7 @@ public class LogisticCreativeTabs {
 		@Override
 		@Nonnull
 		public ItemStack getTabIconItem() {
-			return new ItemStack(BlockRegistry.conveyor_normal);
+			return new ItemStack(LogisticalAutomation.Blocks.conveyor_normal);
 		}
 
 		@Override
@@ -63,41 +64,43 @@ public class LogisticCreativeTabs {
 			this.list = list;
 
 			this.addItem(GuideAPI.getStackFromBook(GuideLogisticalAutomation.logisticsGuide).getItem());
-			this.addItem(ItemRegistry.logistic_wrench);
+			this.addItem(LogisticalAutomation.Items.logistic_wrench);
 
-			this.addItem(ItemRegistry.iron_stick);
-			this.addItem(ItemRegistry.roller_set);
-            this.addItem(ItemRegistry.iron_motor_set);
-            this.addItem(ItemRegistry.gold_motor_set);
-            this.addItem(ItemRegistry.diamond_motor_set);
-            this.addItem(ItemRegistry.leather_belt_set);
+			this.addItem(LogisticalAutomation.Items.iron_stick);
+			this.addItem(LogisticalAutomation.Items.roller_set);
+            this.addItem(LogisticalAutomation.Items.iron_motor_set);
+            this.addItem(LogisticalAutomation.Items.gold_motor_set);
+            this.addItem(LogisticalAutomation.Items.diamond_motor_set);
+            this.addItem(LogisticalAutomation.Items.leather_belt_set);
 
-			this.addBlock(BlockRegistry.filter);
-			this.addBlock(BlockRegistry.alternator);
-			this.addBlock(BlockRegistry.junction);
-			this.addBlock(BlockRegistry.splitter);
-			this.addBlock(BlockRegistry.extractor);
+			this.addBlock(LogisticalAutomation.Blocks.filter);
+			this.addBlock(LogisticalAutomation.Blocks.alternator);
+			this.addBlock(LogisticalAutomation.Blocks.junction);
+			this.addBlock(LogisticalAutomation.Blocks.splitter);
+			this.addBlock(LogisticalAutomation.Blocks.extractor);
 
-			this.addBlock(BlockRegistry.blowtorch);
-			this.addBlock(BlockRegistry.poly_blowtorch);
+			this.addBlock(LogisticalAutomation.Blocks.blowtorch);
+			this.addBlock(LogisticalAutomation.Blocks.poly_blowtorch);
 
-			this.addBlock(BlockRegistry.grate);
+			this.addBlock(LogisticalAutomation.Blocks.grate);
 
-			this.addBlock(BlockRegistry.catwalk);
-			this.addBlock(BlockRegistry.catwalk_stairs);
-			this.addBlock(BlockRegistry.catwalk_pillar);
+			this.addBlock(LogisticalAutomation.Blocks.catwalk);
+			this.addBlock(LogisticalAutomation.Blocks.catwalk_stairs);
+			this.addBlock(LogisticalAutomation.Blocks.catwalk_pillar);
 
-            this.addBlock(BlockRegistry.conveyor_normal);
-            this.addBlock(BlockRegistry.conveyor_fast);
-            this.addBlock(BlockRegistry.conveyor_express);
+			this.addBlock(LogisticalAutomation.Blocks.conveyor_stone);
 
-            this.addBlock(BlockRegistry.conveyor_stair_normal);
-            this.addBlock(BlockRegistry.conveyor_stair_fast);
-            this.addBlock(BlockRegistry.conveyor_stair_express);
+            this.addBlock(LogisticalAutomation.Blocks.conveyor_normal);
+            this.addBlock(LogisticalAutomation.Blocks.conveyor_fast);
+            this.addBlock(LogisticalAutomation.Blocks.conveyor_express);
 
-            this.addBlock(BlockRegistry.conveyor_vertical_normal);
-            this.addBlock(BlockRegistry.conveyor_vertical_fast);
-            this.addBlock(BlockRegistry.conveyor_vertical_express);
+            this.addBlock(LogisticalAutomation.Blocks.conveyor_stair_normal);
+            this.addBlock(LogisticalAutomation.Blocks.conveyor_stair_fast);
+            this.addBlock(LogisticalAutomation.Blocks.conveyor_stair_express);
+
+            this.addBlock(LogisticalAutomation.Blocks.conveyor_vertical_normal);
+            this.addBlock(LogisticalAutomation.Blocks.conveyor_vertical_fast);
+            this.addBlock(LogisticalAutomation.Blocks.conveyor_vertical_express);
 		}
 
 		private void addItem(Item item) {

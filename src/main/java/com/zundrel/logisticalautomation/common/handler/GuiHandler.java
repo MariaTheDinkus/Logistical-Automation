@@ -2,6 +2,9 @@ package com.zundrel.logisticalautomation.common.handler;
 
 import java.util.HashMap;
 
+import com.zundrel.logisticalautomation.client.gui.GuiExtractor;
+import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityExtractor;
+import com.zundrel.logisticalautomation.common.containers.ContainerExtractor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -20,11 +23,23 @@ public class GuiHandler implements IGuiHandler {
 
 	@SideOnly(Side.CLIENT)
 	private static void initGuiScreens(EntityPlayer player, World world, BlockPos pos, TileEntity tileEntity) {
-		guiScreens.put(0, new GuiFilter(new ContainerFilter((TileEntityFilter) tileEntity, player)));
+		if (tileEntity instanceof TileEntityFilter) {
+			guiScreens.put(0, new GuiFilter(new ContainerFilter((TileEntityFilter) tileEntity, player)));
+		}
+
+		if (tileEntity instanceof TileEntityExtractor) {
+			guiScreens.put(1, new GuiExtractor(new ContainerExtractor((TileEntityExtractor) tileEntity, player)));
+		}
 	}
 
 	private static void initContainers(EntityPlayer player, World world, BlockPos pos, TileEntity tileEntity) {
-		containers.put(0, new ContainerFilter((TileEntityFilter) tileEntity, player));
+		if (tileEntity instanceof TileEntityFilter) {
+			containers.put(0, new ContainerFilter((TileEntityFilter) tileEntity, player));
+		}
+
+		if (tileEntity instanceof TileEntityExtractor) {
+			containers.put(1, new ContainerExtractor((TileEntityExtractor) tileEntity, player));
+		}
 	}
 
 	@Override

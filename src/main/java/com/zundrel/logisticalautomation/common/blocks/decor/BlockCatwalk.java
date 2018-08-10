@@ -53,16 +53,12 @@ public class BlockCatwalk extends BlockBasic implements IWrenchable {
 		boolean three = state.getValue(WEST);
 		boolean four = state.getValue(EAST);
 
-		System.out.println(QuadBooleanDirs.findQuadMeta(one, two, three, four));
-
 		return QuadBooleanDirs.findQuadMeta(one, two, three, four);
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		QuadBoolean quadBoolean = QuadBooleanDirs.get(meta);
-
-		System.out.println(quadBoolean);
 
 		IBlockState state = this.getDefaultState().withProperty(NORTH, quadBoolean.getOne()).withProperty(SOUTH, quadBoolean.getTwo()).withProperty(WEST, quadBoolean.getThree()).withProperty(EAST, quadBoolean.getFour());
 		return state;

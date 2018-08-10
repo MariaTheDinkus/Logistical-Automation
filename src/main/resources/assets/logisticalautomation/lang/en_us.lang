@@ -5,6 +5,8 @@ itemGroup.logisticalautomation_conveyor=Logistical Automation
 
 #Blocks
 
+tile.logisticalautomation:conveyor_stone.name=Stone Conveyor
+
 tile.logisticalautomation:conveyor_normal.name=Conveyor
 tile.logisticalautomation:conveyor_fast.name=Fast Conveyor
 tile.logisticalautomation:conveyor_express.name=Express Conveyor
@@ -29,6 +31,7 @@ tile.logisticalautomation:filter.name=Filter
 tile.logisticalautomation:alternator.name=Alternator
 tile.logisticalautomation:junction.name=Junction
 tile.logisticalautomation:splitter.name=Splitter
+tile.logisticalautomation:extractor.name=Extractor
 
 tile.logisticalautomation:blowtorch.name=Blowtorch
 tile.logisticalautomation:poly_blowtorch.name=Octodirectional Blowtorch
@@ -41,7 +44,7 @@ tile.logisticalautomation:catwalk_pillar.name=Catwalk Support Pillars
 
 #Items
 
-item.logisticalautomation:iron_stick.name=Iron Stick
+item.logisticalautomation:iron_stick.name=Iron Dowel
 item.logisticalautomation:roller_set.name=Roller Set
 item.logisticalautomation:iron_motor_set.name=Iron Motor Set
 item.logisticalautomation:gold_motor_set.name=Gold Motor Set

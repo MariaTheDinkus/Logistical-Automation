@@ -1,5 +1,6 @@
 package com.zundrel.logisticalautomation.common.network;
 
+import com.zundrel.logisticalautomation.common.containers.ContainerExtractor;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -35,6 +36,8 @@ public class MessageButton implements IMessage, IMessageHandler<MessageButton, I
 			EntityPlayer player = ctx.getServerHandler().player;
 			if (player.openContainer instanceof ContainerFilter) {
 				((ContainerFilter) player.openContainer).tile.handleMessage(message.nbt);
+			} else if (player.openContainer instanceof ContainerExtractor) {
+				((ContainerExtractor) player.openContainer).tile.handleMessage(message.nbt);
 			}
 		});
 		return null;

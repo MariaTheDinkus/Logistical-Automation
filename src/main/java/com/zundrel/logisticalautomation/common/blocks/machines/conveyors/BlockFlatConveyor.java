@@ -111,11 +111,6 @@ public class BlockFlatConveyor extends BlockConveyor {
 	}
 
 	@Override
-	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
-		return true;
-	}
-
-	@Override
 	public boolean canSpawnInBlock() {
 		return true;
 	}

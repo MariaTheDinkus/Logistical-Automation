@@ -144,7 +144,7 @@ public class GuiFilter extends GuiContainer {
 		nbt.setTag("w", tile.getWestFilter().serializeNBT());
 		nbt.setTag("e", tile.getEastFilter().serializeNBT());
 		tile.handleMessage(nbt);
-		LogisticalAutomation.networkWrapper.sendToServer(new MessageButton(nbt));
+		LogisticalAutomation.networkWrapper.sendToServer(new MessageButton(nbt, tile.getPos()));
 	}
 
 	@Override

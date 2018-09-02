@@ -129,7 +129,7 @@ public class GuiExtractor extends GuiContainer {
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setTag("f", tile.getFilter().serializeNBT());
 		tile.handleMessage(nbt);
-		LogisticalAutomation.networkWrapper.sendToServer(new MessageButton(nbt));
+		LogisticalAutomation.networkWrapper.sendToServer(new MessageButton(nbt, tile.getPos()));
 	}
 
 	@Override

@@ -1,17 +1,11 @@
 package com.zundrel.logisticalautomation.compat.guide;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.zundrel.logisticalautomation.LogisticalAutomation;
-import com.zundrel.logisticalautomation.common.registry.BlockRegistry;
-import com.zundrel.logisticalautomation.common.registry.ItemRegistry;
 import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs;
 import com.zundrel.logisticalautomation.compat.guide.book.CategoryComponents;
 import com.zundrel.logisticalautomation.compat.guide.book.CategoryConveyors;
@@ -27,10 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import amerifrance.guideapi.api.GuideAPI;
 import amerifrance.guideapi.api.GuideBook;
 import amerifrance.guideapi.api.IGuideBook;
-import amerifrance.guideapi.api.IPage;
 import amerifrance.guideapi.api.impl.Book;
-import amerifrance.guideapi.api.impl.abstraction.CategoryAbstract;
-import amerifrance.guideapi.api.impl.abstraction.EntryAbstract;
 import amerifrance.guideapi.category.CategoryItemStack;
 
 import com.zundrel.logisticalautomation.common.info.ModInfo;

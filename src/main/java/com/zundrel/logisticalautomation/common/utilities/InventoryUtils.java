@@ -43,7 +43,7 @@ public class InventoryUtils {
 		return stack;
 	}
 
-	public static ItemStack extractStackFromInventory(World world, BlockPos pos, EnumFacing facing, boolean empty) {
+	public static ItemStack extractStackFromInventory(World world, BlockPos pos, EnumFacing facing) {
 		BlockPos extractPos = pos.offset(facing.getOpposite());
 		TileEntity invTile = world.getTileEntity(extractPos);
 
@@ -54,7 +54,7 @@ public class InventoryUtils {
 			ItemStack stack = ItemStack.EMPTY;
 
 			for (int i = 0; i < inv.getSlots(); i++) {
-				if (empty == true || tile.filterContainsItem(inv.extractItem(i, 1, true))) {
+				if (tile.filterContainsItem(inv.extractItem(i, 1, true))) {
 					stack = inv.extractItem(i, 1, false);
 				}
 

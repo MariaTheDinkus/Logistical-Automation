@@ -7,6 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
@@ -100,7 +101,19 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		if (entityIn instanceof EntityItem) {
+			EntityItem item = (EntityItem) entityIn;
 			entityIn.stepHeight = 0.5F;
+
+			NBTTagCompound data = item.getEntityData();
+			if (data != null) {
+				if (!data.getBoolean("PreventRemoteMovement")) {
+					data.setBoolean("PreventRemoteMovement", true);
+				}
+
+				if (!data.getBoolean("AllowMachineRemoteMovement")) {
+					data.setBoolean("AllowMachineRemoteMovement", true);
+				}
+			}
 		}
 	}
 }

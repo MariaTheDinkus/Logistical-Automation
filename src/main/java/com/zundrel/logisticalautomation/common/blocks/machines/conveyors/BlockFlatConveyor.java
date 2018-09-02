@@ -109,4 +109,14 @@ public class BlockFlatConveyor extends BlockConveyor {
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return new AxisAlignedBB(0, 0, 0, 1, (1F / 16F), 1);
 	}
+
+	@Override
+	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
+		return true;
+	}
+
+	@Override
+	public boolean canSpawnInBlock() {
+		return true;
+	}
 }

@@ -25,10 +25,10 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
+import java.util.function.Predicate;
 
 public class TileEntityExtractor extends TileEntity implements ITickable {
 	private NonNullList<ItemStack> filterInventory;
-	private boolean empty;
 
 	private Filter filter = new Filter();
 
@@ -50,21 +50,11 @@ public class TileEntityExtractor extends TileEntity implements ITickable {
 
 	@Override
 	public void update() {
-		if(!getWorld().isRemote && getWorld().getTotalWorldTime() % 20 == 0) {
-			for (ItemStack filterStack : getFilterInventory()) {
-				if (!filterStack.isEmpty()) {
-					empty = false;
-
-					break;
-				}
-			}
-		}
-
 		if(!getWorld().isRemote && getWorld().getTotalWorldTime() % 5 == 0) {
 			EnumFacing facing = getFacing();
 			BlockPos outputPos = pos.offset(facing);
 
-			ItemStack stack = InventoryUtils.extractStackFromInventory(this.getWorld(), this.getPos(), facing, empty);
+			ItemStack stack = InventoryUtils.extractStackFromInventory(this.getWorld(), this.getPos(), facing);
 
 			if (!stack.isEmpty()) {
 				TileEntity tile = world.getTileEntity(outputPos);
@@ -85,7 +75,8 @@ public class TileEntityExtractor extends TileEntity implements ITickable {
 
 	public boolean filterContainsItem(ItemStack stack) {
 		boolean match = filterInventory.stream().anyMatch(fs -> filter.match(fs, stack));
-		return filter.white ^ !match;
+
+		return filter.white ^ !match || filterInventory.stream().allMatch(fs -> fs.isEmpty());
 	}
 
 	public void handleMessage(NBTTagCompound nbt) {

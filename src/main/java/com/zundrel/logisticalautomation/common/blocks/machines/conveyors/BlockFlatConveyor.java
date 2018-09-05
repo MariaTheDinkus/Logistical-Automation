@@ -6,6 +6,8 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +22,9 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import com.zundrel.logisticalautomation.api.conveyor.EnumConveyorTier;
 import com.zundrel.logisticalautomation.api.conveyor.IShowHopper;
 import com.zundrel.logisticalautomation.common.utilities.MovementUtilities;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlockFlatConveyor extends BlockConveyor {
 	public BlockFlatConveyor(String unlocalizedName, Material material, EnumConveyorTier tier) {
@@ -108,6 +113,13 @@ public class BlockFlatConveyor extends BlockConveyor {
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return new AxisAlignedBB(0, 0, 0, 1, (1F / 16F), 1);
+	}
+
+	@Override
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
+		if (entityIn != null && entityIn.ticksExisted > 1) {
+			addCollisionBox(new AxisAlignedBB(0, 0, 0, 1, (1F / 16F), 1), pos, collidingBoxes, entityBox);
+		}
 	}
 
 	@Override

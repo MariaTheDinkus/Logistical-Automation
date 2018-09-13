@@ -36,8 +36,8 @@ public class TileEntityBlowtorch extends TileEntity implements ITickable {
 
         if (blowtorch.getValue(BlockBlowtorch.POWERED)) {
             if (getWorld().getTotalWorldTime() % 40 == 0) {
-                BlockPos pos = new BlockPos(0, 0, 1).offset(blowtorch.getValue(BlockBlowtorch.FACING));
-                AxisAlignedBB range = new AxisAlignedBB(pos.getX(), pos.getX(), pos.getX(), pos.getZ(), pos.getZ(), pos.getZ());
+                BlockPos pos = getPos().offset(blowtorch.getValue(BlockBlowtorch.FACING));
+                AxisAlignedBB range = new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
                 List entities = getWorld().getEntitiesWithinAABB(EntityLivingBase.class, range);
 
                 BlockPos flameDir = new BlockPos(0, 0, 0).offset(blowtorch.getValue(BlockBlowtorch.FACING));

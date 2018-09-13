@@ -44,16 +44,16 @@ public class TileEntityPolyBlowtorch extends TileEntity implements ITickable {
                     getWorld().spawnParticle(type, getPos().getX() + 0.5 - changeDir, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 - changeDir, -0.03,0.005, -0.03);
                     getWorld().spawnParticle(type, getPos().getX() + 0.5 - changeDir, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5, -0.03,0.005, 0);
                     getWorld().spawnParticle(type, getPos().getX() + 0.5 - changeDir, getPos().getY() + 0.75 + ((new Random().nextFloat() * 0.1) - 0.05), getPos().getZ() + 0.5 + changeDir, -0.03,0.005, 0.03);
-
-                    for (Object obj : entities) {
-                        EntityLivingBase entity = (EntityLivingBase) obj;
-
-                        entity.attackEntityFrom(DamageSource.IN_FIRE, 6);
-                        entity.setFire(2);
-                    }
                 }
 
                 getWorld().playSound(null, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 0.6F, 1);
+
+                for (Object obj : entities) {
+                    EntityLivingBase entity = (EntityLivingBase) obj;
+
+                    entity.attackEntityFrom(DamageSource.IN_FIRE, 6);
+                    entity.setFire(2);
+                }
             }
 
         }

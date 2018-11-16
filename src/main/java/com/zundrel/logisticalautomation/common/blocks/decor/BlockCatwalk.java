@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import com.zundrel.logisticalautomation.LogisticalAutomation;
 import com.zundrel.logisticalautomation.api.IWrenchable;
 import com.zundrel.logisticalautomation.api.QuadBoolean;
 import com.zundrel.logisticalautomation.api.QuadBooleanDirs;
@@ -27,7 +28,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.zundrel.logisticalautomation.common.blocks.BlockBasic;
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs;
 
 public class BlockCatwalk extends BlockBasic implements IWrenchable {
 	public static final PropertyBool NORTH = PropertyBool.create("north");
@@ -36,7 +36,7 @@ public class BlockCatwalk extends BlockBasic implements IWrenchable {
 	public static final PropertyBool WEST = PropertyBool.create("west");
 
 	public BlockCatwalk(String unlocalizedName, Material material) {
-		super(unlocalizedName, material, LogisticCreativeTabs.LogisticConveyorTab.INSTANCE);
+		super(unlocalizedName, material, LogisticalAutomation.CREATIVE_TAB);
 
 		setDefaultState(this.getDefaultState().withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
 	}

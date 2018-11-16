@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.zundrel.logisticalautomation.LogisticalAutomation;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -26,13 +27,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.zundrel.logisticalautomation.common.blocks.BlockBasic;
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs;
 
 public class BlockGrate extends BlockBasic {
 	private static final PropertyBool POWERED = PropertyBool.create("powered");
 
 	public BlockGrate(String unlocalizedName, Material material) {
-		super(unlocalizedName, material, LogisticCreativeTabs.LogisticConveyorTab.INSTANCE);
+		super(unlocalizedName, material, LogisticalAutomation.CREATIVE_TAB);
 
 		setDefaultState(this.getDefaultState().withProperty(POWERED, false));
 	}

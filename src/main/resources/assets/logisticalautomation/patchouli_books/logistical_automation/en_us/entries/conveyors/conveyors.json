@@ -1,0 +1,11 @@
+{
+    "name": "Conveyors",
+    "icon": "logisticalautomation:conveyor_normal",
+    "category": "conveyors",
+    "pages": [
+        {
+            "type": "text",
+            "text": "Conveyors can be used to move all kinds of entities around the world."
+        }
+    ]
+}

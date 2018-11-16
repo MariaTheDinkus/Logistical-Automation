@@ -31,12 +31,12 @@ minecraft {
 }
 
 repositories {
-  maven { url 'http://tehnut.info/maven/' }
+  maven { url 'https://maven.blamejared.com' }
   maven { url "http://maven.amadornes.com/" }
 }
 
 dependencies {
-  deobfCompile "info.amerifrance.guideapi:Guide-API:1.12-2.1.4-57"
+  compile "vazkii.patchouli:Patchouli:1.0-6.8"
   deobfCompile "MCMultiPart2:MCMultiPart:2.5.1"
 }
 

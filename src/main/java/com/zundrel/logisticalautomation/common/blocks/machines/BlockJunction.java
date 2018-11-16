@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.zundrel.logisticalautomation.LogisticalAutomation;
 import com.zundrel.logisticalautomation.common.utilities.InventoryUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -30,14 +31,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.zundrel.logisticalautomation.api.conveyor.IShowHopper;
 import com.zundrel.logisticalautomation.api.IWrenchable;
 import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
 
 public class BlockJunction extends BlockFacing implements IWrenchable, IShowHopper {
 	private static final PropertyBool POWERED = PropertyBool.create("powered");
 
 	public BlockJunction(String unlocalizedName, Material material) {
-		super(unlocalizedName, material, LogisticConveyorTab.INSTANCE);
+		super(unlocalizedName, material, LogisticalAutomation.CREATIVE_TAB);
 
 		setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, false));
 	}

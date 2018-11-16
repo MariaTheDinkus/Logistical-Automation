@@ -2,32 +2,19 @@ package com.zundrel.logisticalautomation.common.blocks.decor;
 
 import com.zundrel.logisticalautomation.LogisticalAutomation;
 import com.zundrel.logisticalautomation.common.blocks.BlockBasic;
-import com.zundrel.logisticalautomation.common.registry.BlockRegistry;
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
 
 public class BlockCatwalkPillar extends BlockBasic {
 	public static final PropertyBool NE = PropertyBool.create("ne");
@@ -36,7 +23,7 @@ public class BlockCatwalkPillar extends BlockBasic {
 	public static final PropertyBool NW = PropertyBool.create("nw");
 
 	public BlockCatwalkPillar(String unlocalizedName, Material material) {
-		super(unlocalizedName, material, LogisticCreativeTabs.LogisticConveyorTab.INSTANCE);
+		super(unlocalizedName, material, LogisticalAutomation.CREATIVE_TAB);
 	}
 
 	@Override

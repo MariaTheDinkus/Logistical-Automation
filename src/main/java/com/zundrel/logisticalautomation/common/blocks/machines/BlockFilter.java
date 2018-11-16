@@ -21,12 +21,11 @@ import com.zundrel.logisticalautomation.api.conveyor.IShowHopper;
 import com.zundrel.logisticalautomation.api.IWrenchable;
 import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
 import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityFilter;
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
 
 public class BlockFilter extends BlockFacing implements IWrenchable, IShowHopper {
 	public BlockFilter(String unlocalizedName, Material material) {
-		super(unlocalizedName, material, LogisticConveyorTab.INSTANCE);
+		super(unlocalizedName, material, LogisticalAutomation.CREATIVE_TAB);
 
 		setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH));
 	}

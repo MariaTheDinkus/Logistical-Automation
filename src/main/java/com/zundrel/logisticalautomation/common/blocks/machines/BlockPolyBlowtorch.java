@@ -1,22 +1,17 @@
 package com.zundrel.logisticalautomation.common.blocks.machines;
 
-import com.zundrel.logisticalautomation.api.IWrenchable;
+import com.zundrel.logisticalautomation.LogisticalAutomation;
 import com.zundrel.logisticalautomation.common.blocks.BlockBasic;
 import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityPolyBlowtorch;
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
@@ -24,7 +19,7 @@ public class BlockPolyBlowtorch extends BlockBasic {
 	public static final PropertyBool POWERED = PropertyBool.create("powered");
 
 	public BlockPolyBlowtorch(String unlocalizedName, Material material) {
-		super(unlocalizedName, material, LogisticConveyorTab.INSTANCE);
+		super(unlocalizedName, material, LogisticalAutomation.CREATIVE_TAB);
 
 		setDefaultState(this.getDefaultState().withProperty(POWERED, false));
 	}

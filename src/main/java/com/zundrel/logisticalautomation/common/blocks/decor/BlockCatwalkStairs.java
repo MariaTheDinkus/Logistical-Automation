@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import com.zundrel.logisticalautomation.LogisticalAutomation;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -21,7 +22,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
 
 public class BlockCatwalkStairs extends BlockFacing {
@@ -29,7 +29,7 @@ public class BlockCatwalkStairs extends BlockFacing {
 	public static final PropertyBool RIGHT = PropertyBool.create("right");
 
 	public BlockCatwalkStairs(String unlocalizedName, Material material) {
-		super(unlocalizedName, material, LogisticCreativeTabs.LogisticConveyorTab.INSTANCE);
+		super(unlocalizedName, material, LogisticalAutomation.CREATIVE_TAB);
 
 		setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH).withProperty(LEFT, false).withProperty(RIGHT, false));
 	}

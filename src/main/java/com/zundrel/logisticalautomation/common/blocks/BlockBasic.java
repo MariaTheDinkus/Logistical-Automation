@@ -3,8 +3,7 @@ package com.zundrel.logisticalautomation.common.blocks;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.zundrel.logisticalautomation.api.conveyor.EnumConveyorTier;
-import javafx.scene.chart.Axis;
+import com.zundrel.logisticalautomation.LogisticalAutomation;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -16,8 +15,6 @@ import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.chunk.Chunk;
 
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
-
 public class BlockBasic extends BlockHorizontal {
 	public List<AxisAlignedBB> collisions = new ArrayList<AxisAlignedBB>();
 
@@ -27,7 +24,7 @@ public class BlockBasic extends BlockHorizontal {
 		setRegistryName(unlocalizedName);
 		setUnlocalizedName(this.getRegistryName().toString());
 
-		setCreativeTab(LogisticConveyorTab.INSTANCE);
+		setCreativeTab(LogisticalAutomation.CREATIVE_TAB);
 
 		if (material == Material.ROCK) {
 			setSoundType(SoundType.STONE);

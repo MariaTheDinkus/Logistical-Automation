@@ -1,5 +1,7 @@
 package com.zundrel.logisticalautomation.common.info;
 
+import net.minecraftforge.common.util.EnumHelper;
+
 public class ModInfo {
 	public static final String MOD_NAME = "Logistical Automation";
 	public static final String MOD_ID = "logisticalautomation";

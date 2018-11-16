@@ -1,9 +1,9 @@
 package com.zundrel.logisticalautomation.common.blocks.machines;
 
+import com.zundrel.logisticalautomation.LogisticalAutomation;
 import com.zundrel.logisticalautomation.api.IWrenchable;
 import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
 import com.zundrel.logisticalautomation.common.blocks.tiles.TileEntityBlowtorch;
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -21,7 +21,7 @@ public class BlockBlowtorch extends BlockFacing implements IWrenchable {
 	public static final PropertyBool POWERED = PropertyBool.create("powered");
 
 	public BlockBlowtorch(String unlocalizedName, Material material) {
-		super(unlocalizedName, material, LogisticConveyorTab.INSTANCE);
+		super(unlocalizedName, material, LogisticalAutomation.CREATIVE_TAB);
 
 		setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, false));
 	}

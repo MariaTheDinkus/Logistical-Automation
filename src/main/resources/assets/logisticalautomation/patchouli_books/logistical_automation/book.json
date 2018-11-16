@@ -1,0 +1,8 @@
+{
+	"name": "Logistical Automation",
+	"landing_text": "Welcome to Logistical Automation! In this book you'll learn how to use the various blocks and items inside of the mod!",
+	"creative_tab": "logisticalautomation",
+	"book_texture": "patchouli:textures/gui/book_green.png",
+	"model": "logisticalautomation:logistic_book",
+	"version": 1
+}

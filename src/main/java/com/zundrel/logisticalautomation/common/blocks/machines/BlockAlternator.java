@@ -1,5 +1,6 @@
 package com.zundrel.logisticalautomation.common.blocks.machines;
 
+import com.zundrel.logisticalautomation.LogisticalAutomation;
 import com.zundrel.logisticalautomation.common.utilities.InventoryUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -23,14 +24,13 @@ import net.minecraft.world.World;
 import com.zundrel.logisticalautomation.api.conveyor.IShowHopper;
 import com.zundrel.logisticalautomation.api.IWrenchable;
 import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
 import com.zundrel.logisticalautomation.common.utilities.RotationUtilities;
 
 public class BlockAlternator extends BlockFacing implements IWrenchable, IShowHopper {
 	public static final PropertyBool RIGHT = PropertyBool.create("right");
 
 	public BlockAlternator(String unlocalizedName, Material material) {
-		super(unlocalizedName, material, LogisticConveyorTab.INSTANCE);
+		super(unlocalizedName, material, LogisticalAutomation.CREATIVE_TAB);
 
 		setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH).withProperty(RIGHT, false));
 	}

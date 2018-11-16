@@ -1,6 +1,5 @@
 package com.zundrel.logisticalautomation;
 
-import com.zundrel.logisticalautomation.api.QuadBooleanDirs;
 import com.zundrel.logisticalautomation.common.blocks.decor.BlockCatwalk;
 import com.zundrel.logisticalautomation.common.blocks.decor.BlockCatwalkPillar;
 import com.zundrel.logisticalautomation.common.blocks.decor.BlockCatwalkStairs;
@@ -10,9 +9,9 @@ import com.zundrel.logisticalautomation.common.blocks.machines.conveyors.BlockSt
 import com.zundrel.logisticalautomation.common.blocks.machines.conveyors.BlockVerticalConveyor;
 import com.zundrel.logisticalautomation.common.items.ItemBasic;
 import com.zundrel.logisticalautomation.common.items.ItemWrench;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockStairs;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -28,9 +27,8 @@ import com.zundrel.logisticalautomation.common.handler.GuiHandler;
 import com.zundrel.logisticalautomation.common.info.ModInfo;
 import com.zundrel.logisticalautomation.common.network.MessageButton;
 import com.zundrel.logisticalautomation.common.registry.TileRegistry;
-import net.minecraftforge.registries.IForgeRegistry;
 
-@Mod(name = ModInfo.MOD_NAME, modid = ModInfo.MOD_ID, version = ModInfo.MOD_VERSION, dependencies = "required-after:guideapi;after:mcmultipart")
+@Mod(name = ModInfo.MOD_NAME, modid = ModInfo.MOD_ID, version = ModInfo.MOD_VERSION, dependencies = "required-after:patchouli;after:mcmultipart")
 public class LogisticalAutomation {
 	@Mod.Instance(ModInfo.MOD_ID)
 	public static LogisticalAutomation instance;
@@ -39,6 +37,13 @@ public class LogisticalAutomation {
 	public static CommonProxy proxy;
 
 	public static SimpleNetworkWrapper networkWrapper;
+
+    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(ModInfo.MOD_ID) {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(Items.logistic_wrench);
+        }
+    };
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -94,7 +99,7 @@ public class LogisticalAutomation {
 
 	@GameRegistry.ObjectHolder(ModInfo.MOD_ID)
 	public static class Items {
-		public static final ItemBasic iron_stick = null;
+	    public static final ItemBasic iron_stick = null;
 
 		public static final ItemBasic roller_set = null;
 		public static final ItemBasic iron_motor_set = null;

@@ -1,5 +1,6 @@
 package com.zundrel.logisticalautomation.common.blocks.machines.conveyors;
 
+import com.zundrel.logisticalautomation.LogisticalAutomation;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -19,7 +20,6 @@ import com.zundrel.logisticalautomation.api.conveyor.EnumConveyorTier;
 import com.zundrel.logisticalautomation.api.conveyor.IConveyor;
 import com.zundrel.logisticalautomation.api.IWrenchable;
 import com.zundrel.logisticalautomation.common.blocks.BlockFacing;
-import com.zundrel.logisticalautomation.common.registry.LogisticCreativeTabs.LogisticConveyorTab;
 import com.zundrel.logisticalautomation.common.utilities.InventoryUtils;
 
 public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable {
@@ -30,7 +30,7 @@ public class BlockConveyor extends BlockFacing implements IConveyor, IWrenchable
 	protected EnumConveyorTier tier;
 
 	public BlockConveyor(String unlocalizedName, Material material, EnumConveyorTier tier) {
-		super(unlocalizedName, material, LogisticConveyorTab.INSTANCE);
+		super(unlocalizedName, material, LogisticalAutomation.CREATIVE_TAB);
 
 		this.tier = tier;
 

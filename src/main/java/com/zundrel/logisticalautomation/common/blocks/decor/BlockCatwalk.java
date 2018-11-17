@@ -120,12 +120,6 @@ public class BlockCatwalk extends BlockBasic implements IWrenchable {
 //		return finalState;
 //	}
 
-
-	@Override
-	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
-
-	}
-
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 		IBlockState neighborState = world.getBlockState(fromPos);
@@ -161,7 +155,32 @@ public class BlockCatwalk extends BlockBasic implements IWrenchable {
 		}
 	}
 
-	@Override
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+	    for (EnumFacing facing : EnumFacing.HORIZONTALS) {
+            BlockPos fromPos = pos.offset(facing);
+
+            PropertyBool boolOpposite = null;
+
+            if (facing == EnumFacing.NORTH) {
+                boolOpposite = SOUTH;
+            } else if (facing == EnumFacing.SOUTH) {
+                boolOpposite = NORTH;
+            } else if (facing == EnumFacing.WEST) {
+                boolOpposite = EAST;
+            } else if (facing == EnumFacing.EAST) {
+                boolOpposite = WEST;
+            }
+
+	        if (worldIn.getBlockState(fromPos).getBlock() instanceof BlockCatwalk) {
+	            worldIn.setBlockState(fromPos, worldIn.getBlockState(fromPos).withProperty(boolOpposite, false));
+            }
+        }
+
+        super.breakBlock(worldIn, pos, state);
+    }
+
+    @Override
 	public void onWrenched(World world, BlockPos pos, EntityPlayer player, EnumFacing facing) {
 		IBlockState state = world.getBlockState(pos);
 		PropertyBool bool = null;
